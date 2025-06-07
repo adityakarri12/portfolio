@@ -13,7 +13,6 @@ const HeroSection = () => {
         y: (e.clientY / window.innerHeight) * 2 - 1,
       });
     };
-
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
@@ -30,53 +29,78 @@ const HeroSection = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
-  // Profile graphics - simple SVG avatar with animated gradient glow
+  // SVG Avatar with gradient glow animation
   const ProfileSVG = () => (
-    <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    <svg
+      viewBox="0 0 140 140"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-full h-full"
+      aria-hidden="true"
+      focusable="false"
+    >
       <defs>
         <radialGradient id="avatarGlow" cx="70" cy="70" r="70" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#0fffc1" stopOpacity="0.8"/>
-          <stop offset="1" stopColor="#7e0fff" stopOpacity="0.4"/>
+          <stop stopColor="#0fffc1" stopOpacity="0.8" />
+          <stop offset="1" stopColor="#7e0fff" stopOpacity="0.4" />
         </radialGradient>
-        <linearGradient id="avatarGradient" x1="0" y1="0" x2="140" y2="140" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#0fffc1"/>
-          <stop offset="1" stopColor="#7e0fff"/>
+        <linearGradient
+          id="avatarGradient"
+          x1="0"
+          y1="0"
+          x2="140"
+          y2="140"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#0fffc1" />
+          <stop offset="1" stopColor="#7e0fff" />
         </linearGradient>
       </defs>
-      <circle
-        cx="70"
-        cy="70"
-        r="66"
-        fill="url(#avatarGlow)"
-        opacity="0.6"
-      >
-        <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite" />
+
+      <circle cx="70" cy="70" r="66" fill="url(#avatarGlow)" opacity="0.6">
+        <animate
+          attributeName="opacity"
+          values="0.4;0.8;0.4"
+          dur="3s"
+          repeatCount="indefinite"
+        />
       </circle>
+
       {/* Head */}
       <ellipse cx="70" cy="56" rx="28" ry="28" fill="url(#avatarGradient)" />
+
       {/* Shoulders */}
-      <ellipse cx="70" cy="100" rx="40" ry="22" fill="url(#avatarGradient)" opacity="0.8"/>
+      <ellipse cx="70" cy="100" rx="40" ry="22" fill="url(#avatarGradient)" opacity="0.8" />
     </svg>
   );
 
+  // Floating animation variants for avatar
   const floatingVariants = {
     animate: {
-      y: [0, -20, 0],
-      rotate: [0, 5, -5, 0],
+      y: [0, -18, 0],
+      rotate: [0, 4, -4, 0],
       transition: {
         duration: 6,
         repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
+        ease: 'easeInOut',
+      },
+    },
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0fffc1]/20 via-[#22223b]/30 to-[#7e0fff]/30">
-      {/* Change Theme Button as Symbol with Glow, below nav */}
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden
+      bg-gradient-to-br from-[#0fffc1]/20 via-[#22223b]/30 to-[#7e0fff]/30"
+    >
+      {/* Theme toggle button */}
       <motion.button
         onClick={handleThemeToggle}
-        className="fixed top-20 right-8 z-50 p-3 rounded-full shadow-neon-cyan bg-[#18181b] dark:bg-[#2e1065] border-2 border-neon-cyan flex items-center justify-center transition-all duration-300 outline-none"
+        aria-label="Toggle dark/light theme"
+        className="fixed top-20 right-8 z-50 p-3 rounded-full
+        shadow-neon-cyan bg-[#18181b] dark:bg-[#2e1065]
+        border-2 border-neon-cyan flex items-center justify-center
+        transition-all duration-300 outline-none"
         style={{
           boxShadow: `0 0 16px 4px #0fffc1, 0 0 32px 8px #7e0fff88`,
         }}
@@ -84,14 +108,15 @@ const HeroSection = () => {
           scale: 1.15,
           boxShadow: `0 0 32px 8px #0fffc1, 0 0 64px 16px #7e0fffcc`,
         }}
-        aria-label="Change Theme"
       >
-        {theme === 'light'
-          ? <FaMoon size={22} className="text-neon-cyan animate-pulse" />
-          : <FaSun size={22} className="text-yellow-300 animate-pulse" />}
+        {theme === 'light' ? (
+          <FaMoon size={22} className="text-neon-cyan animate-pulse" />
+        ) : (
+          <FaSun size={22} className="text-yellow-300 animate-pulse" />
+        )}
       </motion.button>
 
-      {/* Animated particles */}
+      {/* Animated floating particles */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(20)].map((_, i) => (
           <motion.div
@@ -116,33 +141,40 @@ const HeroSection = () => {
         ))}
       </div>
 
-      <div className="container mx-auto px-6 text-center relative z-10">
+      <div className="container mx-auto px-6 text-center relative z-10 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="space-y-8"
         >
-          {/* Profile graphics with animated glow */}
+          {/* Profile with floating glow */}
           <motion.div
             variants={floatingVariants}
             animate="animate"
             className="mx-auto w-36 h-36 md:w-48 md:h-48 relative"
           >
-            <div className="relative w-full h-full flex items-center justify-center rounded-full bg-gradient-to-br from-neon-cyan/70 to-neon-violet/70 shadow-lg ring-4 ring-neon-cyan">
-              <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-neon-cyan via-transparent to-neon-violet blur-2xl opacity-80 animate-pulse pointer-events-none z-0" />
+            <div
+              className="relative w-full h-full flex items-center justify-center rounded-full
+              bg-gradient-to-br from-neon-cyan/70 to-neon-violet/70 shadow-lg ring-4 ring-neon-cyan"
+            >
+              <div
+                className="absolute -inset-2 rounded-full bg-gradient-to-br
+                from-neon-cyan via-transparent to-neon-violet blur-2xl
+                opacity-80 animate-pulse pointer-events-none z-0"
+              />
               <div className="relative z-10 w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">
                 <ProfileSVG />
               </div>
             </div>
           </motion.div>
 
-          {/* Name and title with gradient text */}
+          {/* Name & title with gradient text */}
           <div className="space-y-4">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 1, type: "spring", stiffness: 60 }}
+              transition={{ delay: 0.3, duration: 1, type: 'spring', stiffness: 60 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold"
             >
               <span className="bg-gradient-to-r from-neon-cyan via-blue-400 to-neon-violet bg-clip-text text-transparent animate-gradient-x">
@@ -152,7 +184,7 @@ const HeroSection = () => {
             <motion.p
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5, duration: 1, type: "tween" }}
+              transition={{ delay: 0.5, duration: 1, type: 'tween' }}
               className="text-xl md:text-2xl text-gray-200 dark:text-gray-300"
             >
               Aspiring Software Developer | B.Tech CSE (Artificial Intelligence)
@@ -166,12 +198,11 @@ const HeroSection = () => {
             transition={{ delay: 0.7, duration: 0.8 }}
             className="text-lg md:text-xl text-gray-300 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed"
           >
-            Passionate about AI/ML and full-stack development with hands-on experience 
-            in Python, React, and cloud technologies. Ready to contribute innovative 
-            solutions as a software developer.
+            Passionate about AI/ML and full-stack development with hands-on experience in Python, React,
+            and cloud technologies. Ready to contribute innovative solutions as a software developer.
           </motion.p>
 
-          {/* CTA Buttons with glow hover */}
+          {/* CTA buttons with glow on hover */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -181,8 +212,8 @@ const HeroSection = () => {
             <motion.button
               whileHover={{
                 scale: 1.08,
-                boxShadow: "0 0 16px 4px #0fffc1cc",
-                backgroundColor: "#0fffc1"
+                boxShadow: '0 0 16px 4px #0fffc1cc',
+                backgroundColor: '#0fffc1',
               }}
               whileTap={{ scale: 0.95 }}
               className="glass-panel px-8 py-3 text-lg font-semibold text-neon-cyan border-neon-cyan hover:bg-neon-cyan hover:text-space-dark transition-all duration-300 shadow-lg"
@@ -193,8 +224,8 @@ const HeroSection = () => {
             <motion.button
               whileHover={{
                 scale: 1.08,
-                boxShadow: "0 0 16px 4px #7e0fffcc",
-                backgroundColor: "#7e0fff"
+                boxShadow: '0 0 16px 4px #7e0fffcc',
+                backgroundColor: '#7e0fff',
               }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 text-lg font-semibold border-2 border-neon-violet text-neon-violet hover:bg-neon-violet hover:text-white transition-all duration-300 rounded-xl shadow-lg"
@@ -206,14 +237,15 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Floating code elements with slight parallax */}
+      {/* Floating code snippets with parallax */}
       <motion.div
         className="absolute top-20 left-10 glass-panel p-4 text-sm font-mono text-neon-cyan hidden lg:block"
         animate={{
           y: mousePosition.y * 28,
           x: mousePosition.x * 24,
         }}
-        transition={{ type: "spring", stiffness: 50 }}
+        transition={{ type: 'spring', stiffness: 50 }}
+        aria-hidden="true"
       >
         {'// Welcome to my portfolio'}
       </motion.div>
@@ -224,7 +256,8 @@ const HeroSection = () => {
           y: -mousePosition.y * 22,
           x: -mousePosition.x * 18,
         }}
-        transition={{ type: "spring", stiffness: 50 }}
+        transition={{ type: 'spring', stiffness: 50 }}
+        aria-hidden="true"
       >
         {'console.log("Hello, World!");'}
       </motion.div>

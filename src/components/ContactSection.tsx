@@ -28,7 +28,7 @@ const ContactSection = () => {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-      className="relative py-20 px-6"
+      className="relative py-20 px-6 group hover:brightness-110 hover:saturate-150 transition duration-700"
     >
       <div className="container mx-auto">
         <motion.div
@@ -55,7 +55,7 @@ const ContactSection = () => {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <div className="glass-panel p-8 rounded-xl">
+            <div className="glass-panel p-8 rounded-xl hover:shadow-2xl hover:scale-[1.02] transition duration-500">
               <h3 className="text-2xl font-bold text-white mb-6">
                 🌐 <span className="text-neon-violet">Let's Connect</span> 🌐
               </h3>
@@ -116,7 +116,58 @@ const ContactSection = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Form remains unchanged */}
+            <form onSubmit={handleSubmit} className="glass-panel p-8 rounded-xl space-y-6 hover:shadow-2xl hover:scale-[1.02] transition duration-500">
+              <div>
+                <label htmlFor="name" className="block text-white mb-2">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 bg-white/10 border border-glass-border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-neon-cyan transition-colors"
+                  placeholder="Your Name"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-white mb-2">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 bg-white/10 border border-glass-border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-neon-cyan transition-colors"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-white mb-2">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                  className="w-full px-4 py-3 bg-white/10 border border-glass-border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-neon-cyan transition-colors resize-none"
+                  placeholder="Your message..."
+                />
+              </div>
+
+              <motion.button
+                type="submit"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full py-3 bg-gradient-to-r from-neon-cyan to-neon-violet text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
+              >
+                Send Message
+              </motion.button>
+            </form>
           </motion.div>
         </div>
       </div>

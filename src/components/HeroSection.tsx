@@ -25,19 +25,20 @@ const HeroSection = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
-  const glowColors = ['#0fffc1', '#7e0fff', '#3b82f6', '#6366f1', '#8b5cf6'];
+  const glowColors = ['#3b82f6', '#6366f1', '#0ea5e9', '#60a5fa', '#2563eb'];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0fffc1]/20 via-[#22223b]/30 to-[#7e0fff]/30">
+      {/* Theme Toggle */}
       <motion.button
         onClick={handleThemeToggle}
         className="fixed top-20 right-8 z-50 p-3 rounded-full bg-[#18181b] dark:bg-[#2e1065] border-2 border-neon-cyan flex items-center justify-center"
         style={{
-          boxShadow: `0 0 16px 4px #0fffc1, 0 0 32px 8px #7e0fff88`,
+          boxShadow: `0 0 12px 2px #0fffc1, 0 0 24px 6px #7e0fff66`,
         }}
         whileHover={{
           scale: 1.15,
-          boxShadow: `0 0 32px 8px #0fffc1, 0 0 64px 16px #7e0fffcc inset`,
+          boxShadow: `0 0 24px 6px #0fffc1, 0 0 48px 12px #7e0fffaa inset`,
         }}
         aria-label="Change Theme"
       >
@@ -73,6 +74,7 @@ const HeroSection = () => {
         ))}
       </div>
 
+      {/* Content */}
       <div className="container mx-auto px-6 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -80,12 +82,13 @@ const HeroSection = () => {
           transition={{ duration: 0.8 }}
           className="space-y-8"
         >
+          {/* Profile Image */}
           <motion.div
             whileHover={{
               scale: 1.1,
-              boxShadow: `0 0 80px 40px #0fffc1, 0 0 60px 30px #7e0fff inset`,
+              boxShadow: `0 0 40px 10px #3b82f6, 0 0 40px 10px #6366f1 inset`,
             }}
-            className="mx-auto w-36 h-36 md:w-48 md:h-48 relative rounded-full bg-gradient-to-br from-neon-cyan to-neon-violet shadow-lg ring-4 ring-neon-cyan"
+            className="mx-auto w-36 h-36 md:w-48 md:h-48 relative rounded-full bg-gradient-to-br from-blue-400 to-blue-600 shadow-md ring-4 ring-blue-400 transition-all duration-500"
           >
             <div className="relative z-10 w-full h-full overflow-hidden rounded-full">
               <img
@@ -93,19 +96,21 @@ const HeroSection = () => {
                 alt="Profile"
                 className="w-full h-full object-cover rounded-full"
               />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 via-purple-500 to-indigo-500 blur-2xl opacity-60 animate-pulse" />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-300 via-indigo-400 to-blue-600 blur-xl opacity-40 animate-pulse" />
             </div>
           </motion.div>
 
+          {/* Title */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 1 }}
-            className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-neon-cyan via-blue-500 to-neon-violet bg-clip-text text-transparent animate-gradient-x"
+            className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-500 bg-clip-text text-transparent animate-gradient-x"
           >
             Karri Aditya Lakshmi Narayan
           </motion.h1>
 
+          {/* Description */}
           <motion.p
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -115,6 +120,7 @@ const HeroSection = () => {
             I build intelligent software products using AI and full-stack technologies. Skilled in Python, React, and cloud-native tools — always curious and ready to create.
           </motion.p>
 
+          {/* Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -126,12 +132,12 @@ const HeroSection = () => {
                 key={index}
                 whileHover={{
                   scale: 1.1,
-                  background: `linear-gradient(to right, ${glowColors[index % glowColors.length]}, ${glowColors[(index + 1) % glowColors.length]})`,
-                  boxShadow: `0 0 20px ${glowColors[index]}, inset 0 0 30px ${glowColors[(index + 1) % glowColors.length]}`,
+                  background: `linear-gradient(to right, ${glowColors[index]}, ${glowColors[(index + 2) % glowColors.length]})`,
+                  boxShadow: `0 0 14px ${glowColors[index]}, inset 0 0 20px ${glowColors[(index + 2) % glowColors.length]}`,
                   color: '#000',
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 text-lg font-semibold border-2 rounded-xl text-white border-white transition-all duration-300"
+                className="px-8 py-3 text-lg font-semibold border-2 rounded-xl text-white border-white bg-gradient-to-r from-blue-500 via-indigo-500 to-sky-400 transition-all duration-300"
                 onClick={() => {
                   const id = index === 0 ? 'projects' : 'contact';
                   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -144,7 +150,7 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Floating Code Boxes with Glow */}
+      {/* Floating Code Boxes */}
       {[
         { text: '// Welcome to my portfolio', top: 'top-20 left-10' },
         { text: 'console.log("Hello, World!");', top: 'bottom-40 right-10' },

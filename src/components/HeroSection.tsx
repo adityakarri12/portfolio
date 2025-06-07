@@ -35,12 +35,12 @@ const HeroSection = () => {
     <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
       <defs>
         <radialGradient id="avatarGlow" cx="70" cy="70" r="70" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#0fffc1" stopOpacity="0.8"/>
-          <stop offset="1" stopColor="#7e0fff" stopOpacity="0.4"/>
+          <stop stopColor="#0fffc1" stopOpacity="0.8" />
+          <stop offset="1" stopColor="#7e0fff" stopOpacity="0.4" />
         </radialGradient>
         <linearGradient id="avatarGradient" x1="0" y1="0" x2="140" y2="140" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#0fffc1"/>
-          <stop offset="1" stopColor="#7e0fff"/>
+          <stop stopColor="#0fffc1" />
+          <stop offset="1" stopColor="#7e0fff" />
         </linearGradient>
       </defs>
       <circle
@@ -55,7 +55,7 @@ const HeroSection = () => {
       {/* Head */}
       <ellipse cx="70" cy="56" rx="28" ry="28" fill="url(#avatarGradient)" />
       {/* Shoulders */}
-      <ellipse cx="70" cy="100" rx="40" ry="22" fill="url(#avatarGradient)" opacity="0.8"/>
+      <ellipse cx="70" cy="100" rx="40" ry="22" fill="url(#avatarGradient)" opacity="0.8" />
     </svg>
   );
 
@@ -71,26 +71,27 @@ const HeroSection = () => {
     }
   };
 
-  // Floating particle hover animation variants
-  const particleHover = {
-    scale: 1.5,
-    boxShadow: `0 0 12px 3px #0fffc1, 0 0 24px 6px #7e0fff`,
-    backgroundColor: '#7e0fff',
+  // Glow hover animation for floating code boxes
+  const glowHover = {
+    scale: 1.05,
+    boxShadow: [
+      '0 0 8px 4px #0fffc1, 0 0 16px 8px #7e0fff',
+      '0 0 12px 6px #7e0fff, 0 0 24px 12px #0fffc1',
+      '0 0 8px 4px #0fffc1, 0 0 16px 8px #7e0fff',
+    ],
     transition: {
-      duration: 0.4,
-      yoyo: Infinity,
-      ease: "easeInOut"
-    }
+      duration: 2,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
   };
 
-  // New Description
-  const description = `Driven software developer specializing in AI and full-stack technologies, 
-    passionate about building scalable, user-centric solutions. Experienced with Python, React, and cloud platforms, 
-    I thrive on transforming ideas into impactful digital experiences.`;
-
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0fffc1]/20 via-[#22223b]/30 to-[#7e0fff]/30">
-      {/* Change Theme Button */}
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0fffc1]/20 via-[#22223b]/30 to-[#7e0fff]/30"
+    >
+      {/* Change Theme Button as Symbol with Glow, below nav */}
       <motion.button
         onClick={handleThemeToggle}
         className="fixed top-20 right-8 z-50 p-3 rounded-full shadow-neon-cyan bg-[#18181b] dark:bg-[#2e1065] border-2 border-neon-cyan flex items-center justify-center transition-all duration-300 outline-none"
@@ -113,7 +114,7 @@ const HeroSection = () => {
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-neon-cyan rounded-full cursor-pointer"
+            className="absolute w-1 h-1 bg-neon-cyan rounded-full"
             initial={{
               x: Math.random() * window.innerWidth,
               y: window.innerHeight + 10,
@@ -129,27 +130,9 @@ const HeroSection = () => {
               repeat: Infinity,
               delay: Math.random() * 2,
             }}
-            whileHover={particleHover}
           />
         ))}
       </div>
-
-      {/* Additional background SVG shapes for subtle movement */}
-      <motion.svg
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        initial={{ opacity: 0.15 }}
-        animate={{ opacity: 0.3 }}
-        transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
-      >
-        <circle cx="80" cy="120" r="150" fill="url(#bgGradient)" />
-        <circle cx="300" cy="400" r="250" fill="url(#bgGradient)" />
-        <defs>
-          <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#0fffc1" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="#7e0fff" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-      </motion.svg>
 
       <div className="container mx-auto px-6 text-center relative z-10">
         <motion.div
@@ -172,13 +155,13 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Name and title - single line */}
+          {/* Name and title with gradient text - name in one line */}
           <div className="space-y-4">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 1, type: "spring", stiffness: 60 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold whitespace-nowrap overflow-hidden"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold whitespace-nowrap"
             >
               <span className="bg-gradient-to-r from-neon-cyan via-blue-400 to-neon-violet bg-clip-text text-transparent animate-gradient-x">
                 Karri Aditya Lakshmi Narayan
@@ -194,14 +177,14 @@ const HeroSection = () => {
             </motion.p>
           </div>
 
-          {/* Polished Description */}
+          {/* Description */}
           <motion.p
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.7, duration: 0.8 }}
             className="text-lg md:text-xl text-gray-300 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed"
           >
-            {description}
+            Passionate about leveraging AI/ML and full-stack development to create innovative and scalable software solutions. Skilled in Python, React, and cloud technologies, eager to contribute and grow in a collaborative environment.
           </motion.p>
 
           {/* CTA Buttons with glow hover */}
@@ -239,25 +222,27 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Floating code elements with slight parallax */}
+      {/* Floating code elements with slight parallax and glowing hover */}
       <motion.div
-        className="absolute top-20 left-10 glass-panel p-4 text-sm font-mono text-neon-cyan hidden lg:block select-none"
+        className="absolute top-20 left-10 glass-panel p-4 text-sm font-mono text-neon-cyan hidden lg:block cursor-pointer"
         animate={{
           y: mousePosition.y * 28,
           x: mousePosition.x * 24,
         }}
         transition={{ type: "spring", stiffness: 50 }}
+        whileHover={glowHover}
       >
         {'// Welcome to my portfolio'}
       </motion.div>
 
       <motion.div
-        className="absolute bottom-40 right-10 glass-panel p-4 text-sm font-mono text-neon-violet hidden lg:block select-none"
+        className="absolute bottom-40 right-10 glass-panel p-4 text-sm font-mono text-neon-violet hidden lg:block cursor-pointer"
         animate={{
           y: -mousePosition.y * 22,
           x: -mousePosition.x * 18,
         }}
         transition={{ type: "spring", stiffness: 50 }}
+        whileHover={glowHover}
       >
         {'console.log("Hello, World!");'}
       </motion.div>

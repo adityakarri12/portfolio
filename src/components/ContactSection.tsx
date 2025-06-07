@@ -62,7 +62,9 @@ const ContactSection = () => {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <div className="glass-panel p-8 rounded-xl border-4 border-transparent bg-white/15 hover:border-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 shadow-[0_0_25px_4px_rgba(0,191,255,0.7)] transition duration-700 relative">
+            <div
+              className="glass-panel p-8 rounded-xl border-4 border-transparent bg-white/15 hover:border-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 shadow-[0_0_25px_4px_rgba(0,191,255,0.7)] transition duration-700 relative glow-border-hover"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-neon-cyan/10 rounded-xl blur-sm z-[-1]" />
               <h3 className="text-2xl font-bold text-white mb-6">
                 🌐 <span className="text-neon-violet">Let's Connect</span> 🌐
@@ -117,7 +119,10 @@ const ContactSection = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <form onSubmit={handleSubmit} className="glass-panel p-8 rounded-xl space-y-6 bg-white/15 hover:shadow-2xl hover:scale-[1.02] transition duration-700 border-4 border-transparent hover:border-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 shadow-[0_0_30px_6px_rgba(173,216,230,0.6)]">
+            <form
+              onSubmit={handleSubmit}
+              className="glass-panel p-8 rounded-xl space-y-6 bg-white/15 hover:shadow-2xl hover:scale-[1.02] transition duration-700 border-4 border-transparent hover:border-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 shadow-[0_0_30px_6px_rgba(173,216,230,0.6)] glow-border-hover"
+            >
               <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-purple-500/10 rounded-xl blur-sm z-[-1]" />
               <div>
                 <label htmlFor="name" className="block text-white mb-2">Name</label>

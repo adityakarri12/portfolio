@@ -1,25 +1,24 @@
-
 import { motion } from 'framer-motion';
 
 const ProjectsSection = () => {
   const projects = [
     {
-      title: "AI-Powered Web Application",
-      description: "Developed a scalable web application using React and Python with machine learning integration",
-      tech: ["React", "Python", "TensorFlow", "Node.js"],
-      image: "/placeholder.svg"
+      title: "Movie Recommendation System",
+      description:
+        "Designed and launched a scalable movie recommendation system leveraging advanced filtering algorithms, increasing recommendation precision by 30%.",
+      tech: ["Python", "Pandas", "Tkinter", "ML"],
+      image: "/placeholder.svg",
+      link: "https://movie-recommendation-2-a56i.onrender.com/",
+      github: "https://github.com/adityakarri12/movie-recommendation"
     },
     {
-      title: "Data Analytics Dashboard",
-      description: "Built an interactive dashboard for data visualization and analytics using modern web technologies",
-      tech: ["React", "D3.js", "Express", "MongoDB"],
-      image: "/placeholder.svg"
-    },
-    {
-      title: "Cloud-Based Solution",
-      description: "Created a cloud-native application with 95% uptime reliability and enhanced user engagement",
-      tech: ["React", "AWS", "Docker", "PostgreSQL"],
-      image: "/placeholder.svg"
+      title: "Disease Prediction and Medication System",
+      description:
+        "Engineered an AI-powered disease detection platform with a Python backend, enhancing diagnostic accuracy by 35% and providing medication insights for over 50+ diseases.",
+      tech: ["Python", "RandomForest", "Tkinter", "ML"],
+      image: "/placeholder.svg",
+      link: "https://disease-prdeiction-and-drug.onrender.com/",
+      github: "https://github.com/adityakarri12/Disease-Prdeiction-and-Drug-recommendations-System"
     }
   ];
 
@@ -48,7 +47,7 @@ const ProjectsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -64,7 +63,7 @@ const ProjectsSection = () => {
               </div>
               <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
               <p className="text-gray-300 mb-4">{project.description}</p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mb-4">
                 {project.tech.map((tech, techIndex) => (
                   <span
                     key={techIndex}
@@ -73,6 +72,24 @@ const ProjectsSection = () => {
                     {tech}
                   </span>
                 ))}
+              </div>
+              <div className="flex space-x-4">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neon-cyan hover:underline"
+                >
+                  Live Demo
+                </a>
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neon-violet hover:underline"
+                >
+                  GitHub
+                </a>
               </div>
             </motion.div>
           ))}

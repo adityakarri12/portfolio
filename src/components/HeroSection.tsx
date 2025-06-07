@@ -92,7 +92,7 @@ const HeroSection = () => {
           >
             <div className="relative z-10 w-full h-full overflow-hidden rounded-full">
               <img
-                src="/profile.jpg"
+                src="public/profile.jpg"
                 alt="Profile"
                 className="w-full h-full object-cover rounded-full"
               />

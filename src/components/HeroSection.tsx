@@ -30,23 +30,32 @@ const HeroSection = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
+  // Profile graphics - simple SVG avatar with animated gradient glow
   const ProfileSVG = () => (
     <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
       <defs>
         <radialGradient id="avatarGlow" cx="70" cy="70" r="70" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#0fffc1" stopOpacity="0.8" />
-          <stop offset="1" stopColor="#7e0fff" stopOpacity="0.4" />
+          <stop stopColor="#0fffc1" stopOpacity="0.8"/>
+          <stop offset="1" stopColor="#7e0fff" stopOpacity="0.4"/>
         </radialGradient>
         <linearGradient id="avatarGradient" x1="0" y1="0" x2="140" y2="140" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#0fffc1" />
-          <stop offset="1" stopColor="#7e0fff" />
+          <stop stopColor="#0fffc1"/>
+          <stop offset="1" stopColor="#7e0fff"/>
         </linearGradient>
       </defs>
-      <circle cx="70" cy="70" r="66" fill="url(#avatarGlow)" opacity="0.6">
+      <circle
+        cx="70"
+        cy="70"
+        r="66"
+        fill="url(#avatarGlow)"
+        opacity="0.6"
+      >
         <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite" />
       </circle>
+      {/* Head */}
       <ellipse cx="70" cy="56" rx="28" ry="28" fill="url(#avatarGradient)" />
-      <ellipse cx="70" cy="100" rx="40" ry="22" fill="url(#avatarGradient)" opacity="0.8" />
+      {/* Shoulders */}
+      <ellipse cx="70" cy="100" rx="40" ry="22" fill="url(#avatarGradient)" opacity="0.8"/>
     </svg>
   );
 
@@ -57,44 +66,54 @@ const HeroSection = () => {
       transition: {
         duration: 6,
         repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
+        ease: "easeInOut"
+      }
+    }
   };
 
   return (
     <>
-      {/* Add styles for glow animations */}
       <style>{`
-        @keyframes glowColors {
+        @keyframes blueVioletGlow {
           0% {
-            box-shadow: 0 0 8px 4px #0fffc1, 0 0 16px 8px #7e0fff;
-            border-color: #0fffc1;
+            box-shadow:
+              0 0 8px 3px #3b82f6,
+              0 0 16px 6px #8b5cf6;
           }
           33% {
-            box-shadow: 0 0 12px 6px #ff6ec4, 0 0 20px 10px #ffd86e;
-            border-color: #ff6ec4;
+            box-shadow:
+              0 0 10px 4px #6366f1,
+              0 0 20px 8px #7c3aed;
           }
           66% {
-            box-shadow: 0 0 16px 8px #7e0fff, 0 0 24px 12px #0fffc1;
-            border-color: #7e0fff;
+            box-shadow:
+              0 0 12px 5px #4338ca,
+              0 0 24px 10px #6d28d9;
           }
           100% {
-            box-shadow: 0 0 8px 4px #0fffc1, 0 0 16px 8px #7e0fff;
-            border-color: #0fffc1;
+            box-shadow:
+              0 0 8px 3px #3b82f6,
+              0 0 16px 6px #8b5cf6;
           }
         }
 
         .glow-hover {
-          border: 2px solid transparent;
-          transition: transform 0.3s ease;
+          border-radius: 0.6rem;
+          padding: 1rem;
           cursor: pointer;
+          transition: transform 0.3s ease;
+          border: 2px solid transparent;
+          box-shadow: none;
+          display: inline-block;
+          user-select: none;
+          -webkit-tap-highlight-color: transparent;
         }
+
         .glow-hover:hover {
-          animation: glowColors 3s infinite;
+          animation: blueVioletGlow 3s linear infinite;
+          animation-play-state: running;
           transform: scale(1.05);
-          border-style: solid;
-          border-radius: 0.5rem;
+          border-color: transparent;
         }
       `}</style>
 
@@ -102,7 +121,7 @@ const HeroSection = () => {
         id="home"
         className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0fffc1]/20 via-[#22223b]/30 to-[#7e0fff]/30"
       >
-        {/* Change Theme Button */}
+        {/* Change Theme Button as Symbol with Glow, below nav */}
         <motion.button
           onClick={handleThemeToggle}
           className="fixed top-20 right-8 z-50 p-3 rounded-full shadow-neon-cyan bg-[#18181b] dark:bg-[#2e1065] border-2 border-neon-cyan flex items-center justify-center transition-all duration-300 outline-none"
@@ -115,12 +134,35 @@ const HeroSection = () => {
           }}
           aria-label="Change Theme"
         >
-          {theme === 'light' ? (
-            <FaMoon size={22} className="text-neon-cyan animate-pulse" />
-          ) : (
-            <FaSun size={22} className="text-yellow-300 animate-pulse" />
-          )}
+          {theme === 'light'
+            ? <FaMoon size={22} className="text-neon-cyan animate-pulse" />
+            : <FaSun size={22} className="text-yellow-300 animate-pulse" />}
         </motion.button>
+
+        {/* Animated particles */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-neon-cyan rounded-full"
+              initial={{
+                x: Math.random() * window.innerWidth,
+                y: window.innerHeight + 10,
+                opacity: 0.6 + Math.random() * 0.4,
+              }}
+              animate={{
+                y: -10,
+                x: Math.random() * window.innerWidth,
+                opacity: [0.8, 0.3, 0.8],
+              }}
+              transition={{
+                duration: Math.random() * 3 + 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </div>
 
         <div className="container mx-auto px-6 text-center relative z-10">
           <motion.div
@@ -129,6 +171,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
+            {/* Profile graphics with animated glow */}
             <motion.div
               variants={floatingVariants}
               animate="animate"
@@ -142,12 +185,13 @@ const HeroSection = () => {
               </div>
             </motion.div>
 
+            {/* Name and title with gradient text */}
             <div className="space-y-4">
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 1, type: 'spring', stiffness: 60 }}
-                className="text-4xl md:text-6xl lg:text-7xl font-bold whitespace-nowrap"
+                transition={{ delay: 0.3, duration: 1, type: "spring", stiffness: 60 }}
+                className="text-5xl md:text-6xl lg:text-7xl font-bold whitespace-nowrap"
               >
                 <span className="bg-gradient-to-r from-neon-cyan via-blue-400 to-neon-violet bg-clip-text text-transparent animate-gradient-x">
                   Karri Aditya Lakshmi Narayan
@@ -156,22 +200,25 @@ const HeroSection = () => {
               <motion.p
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5, duration: 1, type: 'tween' }}
+                transition={{ delay: 0.5, duration: 1, type: "tween" }}
                 className="text-xl md:text-2xl text-gray-200 dark:text-gray-300"
               >
                 Aspiring Software Developer | B.Tech CSE (Artificial Intelligence)
               </motion.p>
             </div>
 
+            {/* Description */}
             <motion.p
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.7, duration: 0.8 }}
               className="text-lg md:text-xl text-gray-300 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed"
             >
-              Passionate about leveraging AI/ML and full-stack development to create innovative and scalable software solutions. Skilled in Python, React, and cloud technologies, eager to contribute and grow in a collaborative environment.
+              Passionate about AI/ML and full-stack development with hands-on experience in Python, React, and cloud technologies.
+              Dedicated to building innovative, efficient, and scalable software solutions that solve real-world problems.
             </motion.p>
 
+            {/* CTA Buttons with glow hover */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -181,8 +228,8 @@ const HeroSection = () => {
               <motion.button
                 whileHover={{
                   scale: 1.08,
-                  boxShadow: '0 0 16px 4px #0fffc1cc',
-                  backgroundColor: '#0fffc1',
+                  boxShadow: "0 0 16px 4px #0fffc1cc",
+                  backgroundColor: "#0fffc1"
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="glass-panel px-8 py-3 text-lg font-semibold text-neon-cyan border-neon-cyan hover:bg-neon-cyan hover:text-space-dark transition-all duration-300 shadow-lg"
@@ -193,8 +240,8 @@ const HeroSection = () => {
               <motion.button
                 whileHover={{
                   scale: 1.08,
-                  boxShadow: '0 0 16px 4px #7e0fffcc',
-                  backgroundColor: '#7e0fff',
+                  boxShadow: "0 0 16px 4px #7e0fffcc",
+                  backgroundColor: "#7e0fff"
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 text-lg font-semibold border-2 border-neon-violet text-neon-violet hover:bg-neon-violet hover:text-white transition-all duration-300 rounded-xl shadow-lg"
@@ -206,25 +253,25 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Floating code elements with multi-color glow on hover */}
+        {/* Floating code elements with slight parallax and glowing hover */}
         <motion.div
-          className="absolute top-20 left-10 glass-panel p-4 text-sm font-mono text-neon-cyan hidden lg:block glow-hover"
+          className="absolute top-20 left-10 glass-panel p-4 text-sm font-mono text-neon-cyan glow-hover hidden lg:block"
           animate={{
             y: mousePosition.y * 28,
             x: mousePosition.x * 24,
           }}
-          transition={{ type: 'spring', stiffness: 50 }}
+          transition={{ type: "spring", stiffness: 50 }}
         >
           {'// Welcome to my portfolio'}
         </motion.div>
 
         <motion.div
-          className="absolute bottom-40 right-10 glass-panel p-4 text-sm font-mono text-neon-violet hidden lg:block glow-hover"
+          className="absolute bottom-40 right-10 glass-panel p-4 text-sm font-mono text-neon-violet glow-hover hidden lg:block"
           animate={{
             y: -mousePosition.y * 22,
             x: -mousePosition.x * 18,
           }}
-          transition={{ type: 'spring', stiffness: 50 }}
+          transition={{ type: "spring", stiffness: 50 }}
         >
           {'console.log("Hello, World!");'}
         </motion.div>

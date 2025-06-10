@@ -8,7 +8,7 @@ const ProjectsSection = () => {
       description:
         "Designed and launched a scalable movie recommendation system leveraging advanced filtering algorithms, increasing recommendation precision by 30% and maintaining 95% uptime reliability.",
       tech: ["Python", "Pandas", "Tkinter", "Machine Learning"],
-      image: "/placeholder.svg",
+      image: "https://drive.google.com/file/d/1-utRaXZpQ7BEdniPCWPjfId8OMZmEnd9/view?usp=sharing",
       link: "https://movie-recommendation-2-a56i.onrender.com/",
       github: "https://github.com/adityakarri12/movie-recommendation"
     },
@@ -17,7 +17,7 @@ const ProjectsSection = () => {
       description:
         "Engineered an AI-powered disease detection platform with a Python backend, enhancing diagnostic accuracy by 35% and providing personalized medication insights for over 50+ diseases.",
       tech: ["Python", "RandomForest", "Tkinter", "Machine Learning"],
-      image: "/placeholder.svg",
+      image: "https://drive.google.com/file/d/1oWnvw4bTjK-ejJaZDi0304Fc4hUhweEt/view?usp=sharing",
       link: "https://disease-prdeiction-and-drug.onrender.com/",
       github: "https://github.com/adityakarri12/Disease-Prdeiction-and-Drug-recommendations-System"
     }

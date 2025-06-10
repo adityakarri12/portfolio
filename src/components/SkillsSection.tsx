@@ -1,33 +1,62 @@
 import { motion } from 'framer-motion';
 
-const SkillsSection = () => {
-  const skills = [
-    {
-      category: "Programming Languages",
-      items: ["Python (Expert)", "Java (Proficient)", "C (Familiar)"]
-    },
-    {
-      category: "Web Development",
-      items: ["Streamlit (Proficient)", "HTML/CSS (Basic)"]
-    },
-    {
-      category: "AI / Machine Learning",
-      items: ["Machine Learning (Proficient)", "Deep Learning (Advanced)", "Generative AI (Familiar)", "Data Science with Python"]
-    },
-    {
-      category: "Database Management",
-      items: ["MySQL (Proficient)"]
-    },
-    {
-      category: "Operating Systems",
-      items: ["Windows (Expert)", "Linux (Basic)"]
-    },
-    {
-      category: "Project / Soft Skills",
-      items: ["Team Collaboration", "Analytical Reasoning", "Strategic Insight"]
-    }
-  ];
+const skillLevels = {
+  Expert: 100,
+  Advanced: 90,
+  Proficient: 75,
+  Familiar: 50,
+  Basic: 30,
+};
 
+const skills = [
+  {
+    category: "Programming Languages",
+    items: [
+      { name: "Python", level: "Expert" },
+      { name: "Java", level: "Proficient" },
+      { name: "C", level: "Familiar" },
+    ]
+  },
+  {
+    category: "Web Development",
+    items: [
+      { name: "Streamlit", level: "Proficient" },
+      { name: "HTML/CSS", level: "Basic" },
+    ]
+  },
+  {
+    category: "AI / Machine Learning",
+    items: [
+      { name: "Machine Learning", level: "Proficient" },
+      { name: "Deep Learning", level: "Advanced" },
+      { name: "Generative AI", level: "Familiar" },
+      { name: "Data Science with Python", level: "Proficient" },
+    ]
+  },
+  {
+    category: "Database Management",
+    items: [
+      { name: "MySQL", level: "Proficient" },
+    ]
+  },
+  {
+    category: "Operating Systems",
+    items: [
+      { name: "Windows", level: "Expert" },
+      { name: "Linux", level: "Basic" },
+    ]
+  },
+  {
+    category: "Project / Soft Skills",
+    items: [
+      { name: "Team Collaboration", level: "Expert" },
+      { name: "Analytical Reasoning", level: "Strong" },
+      { name: "Strategic Insight", level: "Advanced" },
+    ]
+  }
+];
+
+const SkillsSection = () => {
   return (
     <motion.section
       id="skills"
@@ -61,7 +90,7 @@ const SkillsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="glass-panel p-6 rounded-xl"
+              className="p-6 rounded-xl border border-cyan-400 bg-black/30 backdrop-blur-md hover:shadow-[0_0_20px_5px_rgba(0,255,255,0.5)] transition-shadow duration-300"
             >
               <h3 className="text-xl font-bold text-neon-cyan mb-4">
                 {skillCategory.category}
@@ -70,20 +99,19 @@ const SkillsSection = () => {
                 {skillCategory.items.map((skill, skillIndex) => (
                   <motion.div
                     key={skillIndex}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: skillIndex * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-center justify-between p-2 bg-white/5 rounded-lg"
+                    whileHover={{ scale: 1.05 }}
+                    className="flex items-center justify-between p-2 bg-white/5 rounded-lg border border-white/10 hover:border-cyan-400 transition-transform duration-300 group"
                   >
-                    <span className="text-gray-300">{skill}</span>
-                    <div className="w-20 h-2 bg-gray-700 rounded-full overflow-hidden">
+                    <span className="text-gray-300 font-medium group-hover:text-white transition-all">
+                      {skill.name}
+                    </span>
+                    <div className="w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
-                        whileInView={{ width: `${80 + Math.random() * 20}%` }}
-                        transition={{ duration: 1, delay: skillIndex * 0.1 }}
+                        whileInView={{ width: `${skillLevels[skill.level] || 60}%` }}
+                        transition={{ duration: 1 }}
                         viewport={{ once: true }}
-                        className="h-full bg-gradient-to-r from-neon-cyan to-neon-violet"
+                        className="h-full bg-gradient-to-r from-cyan-400 to-violet-500 group-hover:shadow-[0_0_10px_cyan] transition-all"
                       />
                     </div>
                   </motion.div>

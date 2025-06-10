@@ -1,31 +1,30 @@
-
 import { motion } from 'framer-motion';
 
 const SkillsSection = () => {
   const skills = [
     {
       category: "Programming Languages",
-      items: ["Python", "JavaScript", "TypeScript", "Java", "C++"]
+      items: ["Python (Expert)", "Java (Proficient)", "C (Familiar)"]
     },
     {
-      category: "Frontend Development",
-      items: ["React", "HTML5", "CSS3", "Tailwind CSS", "Framer Motion"]
+      category: "Web Development",
+      items: ["Streamlit (Proficient)", "HTML/CSS (Basic)"]
     },
     {
-      category: "Backend Development",
-      items: ["Node.js", "Express", "Django", "Flask", "RESTful APIs"]
+      category: "AI / Machine Learning",
+      items: ["Machine Learning (Proficient)", "Deep Learning (Advanced)", "Generative AI (Familiar)", "Data Science with Python"]
     },
     {
-      category: "AI/ML & Data Science",
-      items: ["TensorFlow", "PyTorch", "Pandas", "NumPy", "Scikit-learn"]
+      category: "Database Management",
+      items: ["MySQL (Proficient)"]
     },
     {
-      category: "Cloud & DevOps",
-      items: ["AWS", "Google Cloud", "Docker", "Git", "CI/CD"]
+      category: "Operating Systems",
+      items: ["Windows (Expert)", "Linux (Basic)"]
     },
     {
-      category: "Databases",
-      items: ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Firebase"]
+      category: "Project / Soft Skills",
+      items: ["Team Collaboration", "Analytical Reasoning", "Strategic Insight"]
     }
   ];
 

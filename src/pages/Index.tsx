@@ -1,7 +1,7 @@
-
 import Scene3D from '@/components/Scene3D';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
+import AboutSection from '@/components/AboutSection'; // ✅ added
 import ProjectsSection from '@/components/ProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
 import ContactSection from '@/components/ContactSection';
@@ -20,8 +20,11 @@ const Index = () => {
       <div className="relative z-10">
         {/* Hero Section */}
         <HeroSection />
-        
-        {/* About Section */}
+
+        {/* ✅ Added About Section from external file */}
+        <AboutSection />
+
+        {/* Original inline About Section still here */}
         <motion.section
           id="about"
           initial={{ opacity: 0 }}

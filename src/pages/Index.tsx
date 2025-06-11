@@ -33,7 +33,7 @@ const Index = () => {
           <ProjectsSection />
         </section>
 
-        <section id="resume" className="scroll-mt-24">
+        <section id="skills" className="scroll-mt-24">
           <SkillsSection />
         </section>
 

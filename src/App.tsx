@@ -12,18 +12,23 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      {/* Notifications */}
       <Toaster />
       <Sonner />
-      {/* Global Gradient Background */}
-      <div className="relative min-h-screen bg-[linear-gradient(135deg,#0fffc1_0%,#22223b_50%,#7e0fff_100%)] animate-gradient-x overflow-hidden">
-        <BackgroundDesign />
-        <BrowserRouter>
+
+      {/* Routing */}
+      <BrowserRouter>
+        {/* Global Background */}
+        <div className="relative min-h-screen bg-[linear-gradient(135deg,#0fffc1_0%,#22223b_50%,#7e0fff_100%)] animate-gradient-x overflow-hidden">
+          <BackgroundDesign />
+          
+          {/* Routes */}
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
-      </div>
+        </div>
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );

@@ -10,19 +10,38 @@ import { motion } from 'framer-motion';
 const Index = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-space-gradient">
+      {/* 3D background */}
       <Scene3D />
 
+      {/* Navigation bar */}
       <div className="relative z-20">
         <Navigation />
       </div>
 
-      <main className="relative z-30 space-y-24">
-        <section id="home"><HeroSection /></section>
-        <section id="about"><AboutSection /></section>
-        <section id="projects"><ProjectsSection /></section>
-        <section id="skills"><SkillsSection /></section>
-        <section id="contact"><ContactSection /></section>
+      {/* Main content */}
+      <main className="relative z-30 space-y-24 pt-24">
+        {/* Sections with matching IDs */}
+        <section id="home" className="scroll-mt-24">
+          <HeroSection />
+        </section>
 
+        <section id="about" className="scroll-mt-24">
+          <AboutSection />
+        </section>
+
+        <section id="projects" className="scroll-mt-24">
+          <ProjectsSection />
+        </section>
+
+        <section id="resume" className="scroll-mt-24">
+          <SkillsSection />
+        </section>
+
+        <section id="contact" className="scroll-mt-24">
+          <ContactSection />
+        </section>
+
+        {/* Footer */}
         <motion.footer
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -41,6 +60,7 @@ const Index = () => {
         </motion.footer>
       </main>
 
+      {/* Scroll to top button */}
       <motion.button
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}

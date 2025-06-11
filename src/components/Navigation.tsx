@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -9,8 +8,9 @@ const Navigation = () => {
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
-    { id: 'projects', label: 'Projects' },
+    { id: 'education', label: 'Education' },
     { id: 'skills', label: 'Skills' },
+    { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -47,7 +47,7 @@ const Navigation = () => {
           >
             Karri Aditya Lakshmi Narayan
           </motion.div>
-          
+
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (
               <motion.button
@@ -56,8 +56,8 @@ const Navigation = () => {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection(item.id)}
                 className={`relative px-4 py-2 transition-colors duration-300 ${
-                  activeSection === item.id 
-                    ? 'text-neon-cyan glow-text' 
+                  activeSection === item.id
+                    ? 'text-neon-cyan glow-text'
                     : 'text-gray-300 hover:text-white'
                 }`}
               >
@@ -72,8 +72,8 @@ const Navigation = () => {
               </motion.button>
             ))}
           </div>
-          
-          {/* Mobile menu button */}
+
+          {/* Mobile menu button - optional: can be extended for a full mobile menu */}
           <div className="md:hidden">
             <motion.button
               whileTap={{ scale: 0.95 }}

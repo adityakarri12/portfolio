@@ -67,7 +67,7 @@ const SkillsSection = () => {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-      className="relative py-20 px-6 bg-black text-white"
+      className="relative py-20 px-6 bg-transparent text-white backdrop-blur-sm"
     >
       <div className="container mx-auto">
         <motion.div

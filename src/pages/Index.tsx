@@ -1,10 +1,11 @@
 import Scene3D from '@/components/Scene3D';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
-import ProjectsSection from '@/components/ProjectsSection';
+import AboutSection from '@/components/AboutSection';
+import EducationSection from '@/components/EducationSection'; // ✅ new import
 import SkillsSection from '@/components/SkillsSection';
+import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
-import AboutSection from '@/components/AboutSection'; // ✅ new import
 import { motion } from 'framer-motion';
 
 const Index = () => {
@@ -18,16 +19,26 @@ const Index = () => {
           <HeroSection />
         </section>
 
-        {/* ✅ Updated About Section */}
-        <AboutSection />
+        <section id="about">
+          <AboutSection />
+        </section>
 
-        <ProjectsSection />
+        {/* ✅ Education Section */}
+        <section id="education">
+          <EducationSection />
+        </section>
 
         <section id="skills">
           <SkillsSection />
         </section>
 
-        <ContactSection />
+        <section id="projects">
+          <ProjectsSection />
+        </section>
+
+        <section id="contact">
+          <ContactSection />
+        </section>
 
         <motion.footer
           initial={{ opacity: 0 }}

@@ -6,7 +6,9 @@ import Tilt from 'react-parallax-tilt';
 
 const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    return (localStorage.getItem('theme') as 'light' | 'dark') || 'light';
+  });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -21,6 +23,7 @@ const HeroSection = () => {
 
   useEffect(() => {
     document.body.classList.toggle('dark', theme === 'dark');
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const handleThemeToggle = () => {
@@ -36,7 +39,7 @@ const HeroSection = () => {
         onClick={handleThemeToggle}
         className="fixed top-20 right-8 z-50 p-3 rounded-full bg-[#18181b] dark:bg-[#2e1065] border-2 border-neon-cyan"
         whileHover={{ scale: 1.15 }}
-        aria-label="Change Theme"
+        aria-label="Toggle Theme"
       >
         {theme === 'light'
           ? <FaMoon size={22} className="text-neon-cyan animate-pulse" />
@@ -51,7 +54,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8 }}
           className="space-y-8"
         >
-          {/* Tilt Profile Image */}
+          {/* Profile Image with Tilt */}
           <Tilt
             glareEnable
             glareMaxOpacity={0.4}
@@ -63,7 +66,7 @@ const HeroSection = () => {
             <div className="relative w-full h-full rounded-full overflow-hidden ring-4 ring-cyan-400 shadow-xl">
               <img
                 src="/profile.jpg"
-                alt="Profile"
+                alt="Aditya Karri Profile"
                 className="w-full h-full object-cover rounded-full"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-blue-300 via-indigo-400 to-blue-600 blur-xl opacity-40 animate-pulse" />
@@ -80,7 +83,7 @@ const HeroSection = () => {
             Karri Aditya Lakshmi Narayan
           </motion.h1>
 
-          {/* Type Animation */}
+          {/* Dynamic Typing */}
           <TypeAnimation
             sequence={[
               'AI Enthusiast 🤖', 1500,
@@ -134,29 +137,39 @@ const HeroSection = () => {
 
           {/* Social Links */}
           <div className="flex justify-center gap-6 mt-6 text-white text-xl">
-            <a href="https://linkedin.com/in/aditya-karri-7128a61b1" target="_blank" rel="noopener noreferrer"
-               className="hover:text-cyan-300 transition hover:scale-125">
+            <a
+              href="https://linkedin.com/in/aditya-karri-7128a61b1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cyan-300 transition hover:scale-125"
+              aria-label="LinkedIn Profile"
+            >
               <FaLinkedin size={24} />
             </a>
-            <a href="https://github.com/adityakarri2004" target="_blank" rel="noopener noreferrer"
-               className="hover:text-purple-300 transition hover:scale-125">
+            <a
+              href="https://github.com/adityakarri2004"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-purple-300 transition hover:scale-125"
+              aria-label="GitHub Profile"
+            >
               <FaGithub size={24} />
             </a>
           </div>
         </motion.div>
       </div>
 
-      {/* Floating Boxes */}
+      {/* Floating Code-like Panels */}
       {[
         { text: '// Welcome to my portfolio', pos: 'top-20 left-10' },
-        { text: 'console.log("Hello, World!");', pos: 'bottom-40 right-10' }
+        { text: 'console.log("Hello, World!");', pos: 'bottom-40 right-10' },
       ].map((box, i) => (
         <motion.div
           key={i}
           className={`absolute ${box.pos} glass-panel p-4 text-sm font-mono text-white rounded-lg border border-white bg-white/5 backdrop-blur-md`}
           animate={{
             x: mousePosition.x * (i === 0 ? 24 : -18),
-            y: mousePosition.y * (i === 0 ? 28 : -22)
+            y: mousePosition.y * (i === 0 ? 28 : -22),
           }}
           transition={{ type: 'spring', stiffness: 50 }}
           whileHover={{

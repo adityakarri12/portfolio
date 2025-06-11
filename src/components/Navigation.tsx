@@ -17,17 +17,39 @@ const Navigation = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      const scrollPos = window.scrollY + window.innerHeight / 2;
+      let currentSection = 'home';
+
       for (const item of navItems) {
         const section = document.getElementById(item.id);
-        if (section && scrollPos >= section.offsetTop) {
-          setActiveSection(item.id);
+        if (section) {
+          const offsetTop = section.offsetTop;
+          const offsetHeight = section.offsetHeight;
+          if (
+            window.scrollY >= offsetTop - offsetHeight * 0.3 &&
+            window.scrollY < offsetTop + offsetHeight - offsetHeight * 0.3
+          ) {
+            currentSection = item.id;
+          }
         }
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    // Debounce with requestAnimationFrame for better performance
+    let ticking = false;
+    const optimizedScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', optimizedScroll);
+    return () => window.removeEventListener('scroll', optimizedScroll);
   }, []);
 
   const scrollToSection = (id: string) => {

@@ -130,7 +130,7 @@ const HeroSection = () => {
               },
               {
                 icon: <FaGithub />,
-                href: 'https://github.com/karriaditya1219',
+                href: 'https://github.com/adityakarri12',
               },
               {
                 icon: <SiLeetcode />,
@@ -138,7 +138,7 @@ const HeroSection = () => {
               },
               {
                 icon: <SiHackerrank />,
-                href: 'https://www.hackerrank.com/profile/adityakarri2004',
+                href: 'https://www.hackerrank.com/profile/22A31A43F1',
               },
             ].map((social, i) => (
               <motion.a

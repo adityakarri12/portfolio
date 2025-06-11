@@ -12,7 +12,7 @@ const AboutSection = () => {
       className="relative py-20 px-6 text-white bg-transparent"
     >
       <div className="container mx-auto max-w-5xl">
-        {/* Heading and Description */}
+        {/* Heading & Description */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -38,40 +38,43 @@ const AboutSection = () => {
           </a>
         </motion.div>
 
-        {/* Stats Grid */}
+        {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center">
+          {/* CGPA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
-            className="p-4 rounded-lg border border-cyan-400 bg-transparent"
+            className="p-6 rounded-lg border border-cyan-400 bg-glass"
           >
-            <FaUniversity className="text-3xl mx-auto mb-2 text-cyan-300" />
+            <FaUniversity className="text-3xl mx-auto mb-3 text-cyan-300" />
             <h3 className="text-xl font-semibold">Current CGPA</h3>
             <p className="text-lg text-gray-300">8.6</p>
           </motion.div>
 
+          {/* Projects */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="p-4 rounded-lg border border-violet-400 bg-transparent"
+            className="p-6 rounded-lg border border-violet-400 bg-glass"
           >
-            <FaProjectDiagram className="text-3xl mx-auto mb-2 text-violet-300" />
+            <FaProjectDiagram className="text-3xl mx-auto mb-3 text-violet-300" />
             <h3 className="text-xl font-semibold">Projects Done</h3>
             <p className="text-lg text-gray-300">2+</p>
           </motion.div>
 
+          {/* Internships */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="p-4 rounded-lg border border-pink-400 bg-transparent"
+            className="p-6 rounded-lg border border-pink-400 bg-glass"
           >
-            <FaBriefcase className="text-3xl mx-auto mb-2 text-pink-300" />
+            <FaBriefcase className="text-3xl mx-auto mb-3 text-pink-300" />
             <h3 className="text-xl font-semibold">Internships</h3>
             <p className="text-lg text-gray-300">4+ Completed</p>
           </motion.div>

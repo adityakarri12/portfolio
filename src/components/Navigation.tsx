@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -17,6 +16,22 @@ const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      const sectionOffsets = navItems
+        .map((item) => {
+          const element = document.getElementById(item.id);
+          return element ? { id: item.id, offset: element.offsetTop } : null;
+        })
+        .filter(Boolean) as { id: string; offset: number }[];
+
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+      for (let i = sectionOffsets.length - 1; i >= 0; i--) {
+        if (scrollPosition >= sectionOffsets[i].offset) {
+          setActiveSection(sectionOffsets[i].id);
+          break;
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -47,7 +62,7 @@ const Navigation = () => {
           >
             Karri Aditya Lakshmi Narayan
           </motion.div>
-          
+
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (
               <motion.button
@@ -56,8 +71,8 @@ const Navigation = () => {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection(item.id)}
                 className={`relative px-4 py-2 transition-colors duration-300 ${
-                  activeSection === item.id 
-                    ? 'text-neon-cyan glow-text' 
+                  activeSection === item.id
+                    ? 'text-neon-cyan glow-text'
                     : 'text-gray-300 hover:text-white'
                 }`}
               >
@@ -72,15 +87,25 @@ const Navigation = () => {
               </motion.button>
             ))}
           </div>
-          
+
           {/* Mobile menu button */}
           <div className="md:hidden">
             <motion.button
               whileTap={{ scale: 0.95 }}
               className="text-white focus:outline-none"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             </motion.button>
           </div>

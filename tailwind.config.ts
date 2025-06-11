@@ -64,11 +64,13 @@ export default {
         },
         // Custom portfolio neon palette
         'space-dark': '#121630',
+        'space-900': '#0a0a23',
         'neon-cyan': '#00D9FF',
         'neon-violet': '#8B5CF6',
         'electric-blue': '#3B82F6',
         'glass-white': 'rgba(255, 255, 255, 0.1)',
         'glass-border': 'rgba(255, 255, 255, 0.2)',
+        'timeline-line': '#2dd4bf'
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -101,6 +103,18 @@ export default {
           '10%': { opacity: '1' },
           '90%': { opacity: '1' },
           '100%': { transform: 'translateY(-100vh) translateX(100px)', opacity: '0' }
+        },
+        'scroll-reveal': {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' }
+        },
+        'pulse-icon': {
+          '0%, 100%': { transform: 'scale(1)', opacity: '0.9' },
+          '50%': { transform: 'scale(1.2)', opacity: '1' }
+        },
+        'slide-in-left': {
+          '0%': { opacity: '0', transform: 'translateX(-50px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' }
         }
       },
       animation: {
@@ -109,7 +123,10 @@ export default {
         'float': 'float 6s ease-in-out infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
         'particle': 'particle 10s linear infinite',
-        'gradient-x': 'gradient-x 8s ease infinite'
+        'gradient-x': 'gradient-x 8s ease infinite',
+        'scroll-reveal': 'scroll-reveal 0.8s ease-out forwards',
+        'pulse-icon': 'pulse-icon 1.5s ease-in-out infinite',
+        'slide-in-left': 'slide-in-left 0.7s ease-out forwards'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -118,5 +135,5 @@ export default {
       }
     }
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate")]
 } satisfies Config;

@@ -35,6 +35,7 @@ const ProjectsSection = () => {
       className="relative py-20 px-6 bg-transparent text-white backdrop-blur-sm"
     >
       <div className="container mx-auto">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -50,6 +51,7 @@ const ProjectsSection = () => {
           </p>
         </motion.div>
 
+        {/* Project Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <motion.div
@@ -59,8 +61,9 @@ const ProjectsSection = () => {
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.04 }}
-              className="group p-6 rounded-xl border-4 border-transparent bg-white/5 backdrop-blur-md hover:border-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 transition-all duration-500"
+              className="group p-6 rounded-xl border-4 border-transparent bg-white/5 backdrop-blur-md transition-all duration-500 hover:shadow-[0_0_30px_6px_rgba(0,255,255,0.3)] hover:border-gradient-to-r from-cyan-400 via-purple-500 to-blue-400"
             >
+              {/* Project Image */}
               <div className="aspect-video rounded-lg mb-4 overflow-hidden shadow-md border border-cyan-500">
                 <img
                   src={project.src}
@@ -68,8 +71,12 @@ const ProjectsSection = () => {
                   className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
                 />
               </div>
+
+              {/* Text Content */}
               <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
               <p className="text-gray-300 mb-4">{project.description}</p>
+
+              {/* Tech Stack */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tech.map((tech, techIndex) => (
                   <span
@@ -80,6 +87,8 @@ const ProjectsSection = () => {
                   </span>
                 ))}
               </div>
+
+              {/* Links */}
               <div className="flex flex-wrap items-center justify-between gap-4 mt-4">
                 <div className="flex space-x-4">
                   <a
@@ -99,18 +108,30 @@ const ProjectsSection = () => {
                     <FaGithub /> GitHub
                   </a>
                 </div>
-
-                {/* 💬 Message button inside each card */}
-                <a
-                  href="#contact"
-                  className="px-4 py-1 rounded-full text-sm border border-blue-400 text-blue-300 hover:bg-blue-500/20 hover:text-white transition duration-300"
-                >
-                  💬 Message Me an Idea
-                </a>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* 💬 Message Box at Bottom */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mt-20 max-w-3xl mx-auto text-center p-6 border-4 border-transparent bg-white/5 backdrop-blur-md rounded-xl hover:shadow-[0_0_30px_6px_rgba(0,255,255,0.3)] hover:border-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 transition-all duration-500"
+        >
+          <h4 className="text-2xl font-semibold text-white mb-2">💡 Have a Project Idea?</h4>
+          <p className="text-gray-300 text-md mb-4">
+            I'm always open to collaborations! If you have a cool idea or want to build something together, feel free to message me.
+          </p>
+          <a
+            href="#contact"
+            className="inline-block px-5 py-2 bg-cyan-500/20 text-cyan-300 border border-cyan-400 rounded-full hover:bg-cyan-600/30 hover:text-white transition-all duration-300"
+          >
+            💬 Message Me
+          </a>
+        </motion.div>
       </div>
     </motion.section>
   );

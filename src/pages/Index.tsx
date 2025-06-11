@@ -1,4 +1,3 @@
-
 import Scene3D from '@/components/Scene3D';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
@@ -12,15 +11,17 @@ const Index = () => {
     <div className="relative min-h-screen bg-space-gradient overflow-x-hidden">
       {/* 3D Background Scene */}
       <Scene3D />
-      
+
       {/* Navigation */}
       <Navigation />
-      
+
       {/* Main Content */}
       <div className="relative z-10">
-        {/* Hero Section */}
-        <HeroSection />
-        
+        {/* Hero Section with ID */}
+        <section id="home">
+          <HeroSection />
+        </section>
+
         {/* About Section */}
         <motion.section
           id="about"
@@ -43,14 +44,14 @@ const Index = () => {
               </h2>
               <div className="glass-panel p-8 md:p-12">
                 <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
-                  I'm a passionate Computer Science student specializing in Data Science, with a strong foundation 
-                  in artificial intelligence, machine learning, and full-stack web development. My journey in tech 
+                  I'm a passionate Computer Science student specializing in Data Science, with a strong foundation
+                  in artificial intelligence, machine learning, and full-stack web development. My journey in tech
                   has been driven by curiosity and a desire to solve real-world problems through innovative solutions.
                 </p>
                 <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">
-                  Through hands-on internships at Infosys Springboard and Google Cloud, I've developed scalable 
-                  applications that have achieved 95% uptime reliability and enhanced user engagement by 25%. 
-                  I'm proficient in Python, React, and various AI/ML frameworks, always eager to learn and adapt 
+                  Through hands-on internships at Infosys Springboard and Google Cloud, I've developed scalable
+                  applications that have achieved 95% uptime reliability and enhanced user engagement by 25%.
+                  I'm proficient in Python, React, and various AI/ML frameworks, always eager to learn and adapt
                   to new technologies.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
@@ -71,16 +72,18 @@ const Index = () => {
             </motion.div>
           </div>
         </motion.section>
-        
+
         {/* Projects Section */}
         <ProjectsSection />
-        
-        {/* Skills Section */}
-        <SkillsSection />
-        
+
+        {/* Skills Section with ID */}
+        <section id="skills">
+          <SkillsSection />
+        </section>
+
         {/* Contact Section */}
         <ContactSection />
-        
+
         {/* Footer */}
         <motion.footer
           initial={{ opacity: 0 }}
@@ -99,7 +102,7 @@ const Index = () => {
           </div>
         </motion.footer>
       </div>
-      
+
       {/* Scroll to top button */}
       <motion.button
         initial={{ opacity: 0, scale: 0 }}

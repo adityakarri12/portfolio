@@ -1,7 +1,7 @@
 import Scene3D from '@/components/Scene3D';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
-import AboutSection from '@/components/AboutSection'; // ✅ Added
+import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
 import ContactSection from '@/components/ContactSection';
@@ -9,37 +9,30 @@ import { motion } from 'framer-motion';
 
 const Index = () => {
   return (
-    <div className="relative min-h-screen bg-space-gradient overflow-x-hidden">
-      {/* 3D Background Scene */}
+    <div className="relative min-h-screen overflow-x-hidden bg-space-gradient">
+      {/* 3D Background Layer */}
       <Scene3D />
-      
-      {/* Navigation */}
-      <Navigation />
-      
-      {/* Main Content */}
-      <div className="relative z-10">
-        {/* Hero Section */}
+
+      {/* Navigation Layer */}
+      <div className="relative z-20">
+        <Navigation />
+      </div>
+
+      {/* Main Content Layer */}
+      <div className="relative z-30">
         <HeroSection />
-        
-        {/* About Section */}
-        <AboutSection /> {/* ✅ Reusable component added here */}
-        
-        {/* Projects Section */}
+        <AboutSection />
         <ProjectsSection />
-        
-        {/* Skills Section */}
         <SkillsSection />
-        
-        {/* Contact Section */}
         <ContactSection />
-        
+
         {/* Footer */}
         <motion.footer
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="relative py-12 px-6 border-t border-glass-border"
+          className="relative py-12 px-6 border-t border-glass-border bg-transparent z-30"
         >
           <div className="container mx-auto text-center">
             <p className="text-gray-400 mb-4">
@@ -51,8 +44,8 @@ const Index = () => {
           </div>
         </motion.footer>
       </div>
-      
-      {/* Scroll to top button */}
+
+      {/* Scroll to Top Button */}
       <motion.button
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}

@@ -30,8 +30,8 @@ const HeroSection = () => {
   const glowColors = ['#00F0FF', '#FF61F6', '#8AFF00', '#FFCF00', '#00FFC3'];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-space-gradient">
-      {/* Theme Toggle */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent">
+      {/* Theme Toggle Button */}
       <motion.button
         onClick={handleThemeToggle}
         className="fixed top-20 right-8 z-50 p-3 rounded-full bg-[#18181b] dark:bg-[#2e1065] border-2 border-neon-cyan"
@@ -51,6 +51,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8 }}
           className="space-y-8"
         >
+          {/* Tilt Profile Image */}
           <Tilt
             glareEnable
             glareMaxOpacity={0.4}
@@ -69,6 +70,7 @@ const HeroSection = () => {
             </div>
           </Tilt>
 
+          {/* Name */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -78,6 +80,7 @@ const HeroSection = () => {
             Karri Aditya Lakshmi Narayan
           </motion.h1>
 
+          {/* Type Animation */}
           <TypeAnimation
             sequence={[
               'AI Enthusiast 🤖', 1500,
@@ -91,15 +94,17 @@ const HeroSection = () => {
             className="text-lg md:text-xl text-cyan-200"
           />
 
+          {/* Description */}
           <motion.p
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.7, duration: 0.8 }}
             className="text-lg md:text-xl text-gray-300 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed"
           >
-            I build intelligent software products using AI and full‑stack tech. Skilled in Python, React, and cloud‑native tools — always curious and ready to create.
+            I build intelligent software products using AI and full-stack tech. Skilled in Python, React, and cloud-native tools — always curious and ready to create.
           </motion.p>
 
+          {/* Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -127,6 +132,7 @@ const HeroSection = () => {
             ))}
           </motion.div>
 
+          {/* Social Links */}
           <div className="flex justify-center gap-6 mt-6 text-white text-xl">
             <a href="https://linkedin.com/in/aditya-karri-7128a61b1" target="_blank" rel="noopener noreferrer"
                className="hover:text-cyan-300 transition hover:scale-125">
@@ -140,7 +146,7 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* 🌐 Floating Code Boxes */}
+      {/* Floating Boxes */}
       {[
         { text: '// Welcome to my portfolio', pos: 'top-20 left-10' },
         { text: 'console.log("Hello, World!");', pos: 'bottom-40 right-10' }

@@ -9,27 +9,19 @@ const Navigation = () => {
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'projects', label: 'Projects' },
-    { id: 'resume', label: 'Resume' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'contact', label: 'Contact' }
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      const sectionOffsets = navItems
-        .map((item) => {
-          const element = document.getElementById(item.id);
-          return element ? { id: item.id, offset: element.offsetTop } : null;
-        })
-        .filter(Boolean) as { id: string; offset: number }[];
-
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
-
-      for (let i = sectionOffsets.length - 1; i >= 0; i--) {
-        if (scrollPosition >= sectionOffsets[i].offset) {
-          setActiveSection(sectionOffsets[i].id);
-          break;
+      const scrollPos = window.scrollY + window.innerHeight / 2;
+      for (const item of navItems) {
+        const section = document.getElementById(item.id);
+        if (section && scrollPos >= section.offsetTop) {
+          setActiveSection(item.id);
         }
       }
     };
@@ -38,11 +30,10 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(sectionId);
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -54,61 +45,30 @@ const Navigation = () => {
         isScrolled ? 'glass-panel m-4 rounded-full' : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="text-xl font-bold gradient-text"
-          >
-            Karri Aditya Lakshmi Narayan
-          </motion.div>
+      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="text-xl font-bold gradient-text"
+        >
+          Karri Aditya Lakshmi Narayan
+        </motion.div>
 
-          <div className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
-              <motion.button
-                key={item.id}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection(item.id)}
-                className={`relative px-4 py-2 transition-colors duration-300 ${
-                  activeSection === item.id
-                    ? 'text-neon-cyan glow-text'
-                    : 'text-gray-300 hover:text-white'
-                }`}
-              >
-                {item.label}
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-neon-cyan"
-                    style={{ borderRadius: '2px' }}
-                  />
-                )}
-              </motion.button>
-            ))}
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+        <div className="hidden md:flex space-x-6">
+          {navItems.map((item) => (
             <motion.button
+              key={item.id}
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="text-white focus:outline-none"
+              onClick={() => scrollToSection(item.id)}
+              className={`transition-colors duration-300 px-4 py-2 ${
+                activeSection === item.id
+                  ? 'text-neon-cyan glow-text'
+                  : 'text-gray-300 hover:text-white'
+              }`}
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
+              {item.label}
             </motion.button>
-          </div>
+          ))}
         </div>
       </div>
     </motion.nav>

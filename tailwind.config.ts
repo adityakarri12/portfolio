@@ -19,6 +19,7 @@ export default {
     },
     extend: {
       colors: {
+        // System color variables
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -62,7 +63,8 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))'
         },
-        // Custom portfolio neon palette
+
+        // Custom portfolio palette
         'space-dark': '#121630',
         'space-900': '#0a0a23',
         'neon-cyan': '#00D9FF',

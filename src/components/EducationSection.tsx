@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, School, BookOpen } from 'lucide-react'; // Optional: replace with custom icons if needed
+import { GraduationCap, School, BookOpen } from 'lucide-react';
 
 const educationData = [
   {
@@ -36,15 +36,8 @@ const EducationSection = () => {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-      className="relative py-20 px-6 group bg-gradient-to-b from-black to-space-900 overflow-hidden"
+      className="relative py-20 px-6 group bg-transparent overflow-hidden"
     >
-      {/* Floating Decorations */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-10 left-10 w-16 h-16 bg-gradient-to-br from-white/20 to-neon-cyan/20 rounded-full rotate-12 animate-floatSlow blur-md" />
-        <div className="absolute bottom-10 right-16 w-20 h-14 bg-gradient-to-tr from-white/20 to-neon-violet/20 rounded-full rotate-45 animate-floatSlow blur-lg" />
-        <div className="absolute top-1/2 left-1/3 w-12 h-12 bg-gradient-to-bl from-white/20 to-electric-blue/20 rounded-full rotate-6 animate-floatSlow blur-md" />
-      </div>
-
       <div className="container mx-auto relative z-10">
         {/* Header */}
         <motion.div
@@ -62,28 +55,28 @@ const EducationSection = () => {
           </p>
         </motion.div>
 
-        {/* Timeline with animated vertical line */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Vertical line */}
+        {/* Horizontal Timeline */}
+        <div className="relative flex flex-col md:flex-row items-start justify-center gap-10 md:gap-8 max-w-6xl mx-auto overflow-x-auto">
+          {/* Horizontal line */}
           <motion.div
-            initial={{ height: 0 }}
-            whileInView={{ height: "100%" }}
+            initial={{ width: 0 }}
+            whileInView={{ width: "100%" }}
             transition={{ duration: 1, ease: 'easeInOut' }}
             viewport={{ once: true }}
-            className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-neon-cyan via-purple-500 to-electric-blue rounded-full"
+            className="absolute top-10 left-0 right-0 h-1 bg-gradient-to-r from-neon-cyan via-purple-500 to-electric-blue rounded-full md:top-1/2 md:translate-y-[-50%] z-0"
           />
 
           {educationData.map((edu, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="relative pl-16 pb-16 group"
+              className="relative z-10 min-w-[280px] max-w-xs"
             >
-              {/* Timeline Dot + Icon */}
-              <div className="absolute left-3 top-2 w-6 h-6 flex items-center justify-center bg-black border-4 border-white/20 rounded-full shadow-lg">
+              {/* Dot and Icon */}
+              <div className="flex items-center justify-center w-10 h-10 mx-auto bg-black border-4 border-white/20 rounded-full shadow-lg mb-4">
                 {edu.icon}
               </div>
 

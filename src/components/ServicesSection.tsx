@@ -42,6 +42,7 @@ const services = [
 const ServicesSection = () => {
   return (
     <section id="services" className="relative py-20 px-6 bg-transparent text-white">
+      {/* Section Heading */}
       <div className="relative z-10 container mx-auto text-center mb-16">
         <motion.h2
           className="text-4xl font-bold gradient-text mb-3"
@@ -61,6 +62,7 @@ const ServicesSection = () => {
         </motion.p>
       </div>
 
+      {/* Service Cards */}
       <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {services.map((svc, index) => (
           <motion.div
@@ -68,10 +70,11 @@ const ServicesSection = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
+            whileHover={{ y: -10, scale: 1.05 }} // 💥 Popup effect
             className="rounded-xl p-6 bg-transparent backdrop-blur-md 
                        border border-cyan-400 
                        shadow-[0_0_25px_rgba(34,211,238,0.5)] 
-                       transition-all duration-300 hover:scale-105"
+                       transition-transform duration-300 ease-in-out cursor-pointer"
           >
             <div className="relative z-10">
               <div className="text-5xl mb-4">{svc.icon}</div>

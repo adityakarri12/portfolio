@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { FaUniversity, FaBriefcase, FaProjectDiagram, FaDownload } from 'react-icons/fa';
-import Image from 'next/image'; // Optional: if you're using Next.js
 
 const AboutSection = () => {
   return (
@@ -12,21 +11,21 @@ const AboutSection = () => {
       viewport={{ once: true }}
       className="relative py-20 px-6 text-white bg-transparent"
     >
-      <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12">
-        {/* Image Box */}
+      <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-center gap-12">
+        
+        {/* Left Image Box */}
         <motion.div
           whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.4 }}
-          className="w-64 h-80 rounded-3xl border-4 p-2 border-cyan-400 hover:border-gradient-to-br from-cyan-400 via-violet-500 to-pink-500 bg-black/30 backdrop-blur-md shadow-[0_0_25px_4px_rgba(0,191,255,0.5)] hover:shadow-[0_0_35px_6px_rgba(255,255,255,0.3)] transition-all duration-500"
+          className="w-full md:w-[300px] h-[360px] bg-black rounded-3xl border border-cyan-400 p-4 glow-img transition duration-300"
         >
           <img
-            src="/your-image.jpg"
-            alt="Profile"
+            src="/myimage.jpg" // replace with your image path
+            alt="Aditya Karri"
             className="w-full h-full object-cover rounded-2xl"
           />
         </motion.div>
 
-        {/* Content & Cards */}
+        {/* Right Content */}
         <div className="flex-1">
           {/* Heading & Description */}
           <motion.div
@@ -36,12 +35,11 @@ const AboutSection = () => {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold neon-text typewriter-text mb-6 text-cyan-400">
               About Me
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl">
-              I’m <span className="text-cyan-400 font-semibold">Karri Aditya Lakshmi Narayan</span>,
-              a Computer Science Engineering student specializing in Artificial Intelligence at Pragati Engineering College, Andhra Pradesh. I am deeply passionate about machine learning, deep learning, and generative AI. With hands-on experience through multiple internships and projects, I thrive on building impactful solutions and participating in hackathons and tech events.
+              I’m <span className="text-cyan-400 font-semibold">Karri Aditya Lakshmi Narayan</span>, a Computer Science Engineering student specializing in Artificial Intelligence at Pragati Engineering College, Andhra Pradesh. I am deeply passionate about machine learning, deep learning, and generative AI. With hands-on experience through multiple internships and projects, I thrive on building impactful solutions and participating in hackathons and tech events.
             </p>
 
             <a
@@ -59,9 +57,11 @@ const AboutSection = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-center">
             {/* CGPA */}
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.4 }}
-              className="p-6 rounded-xl border-2 bg-black/30 border-cyan-400 hover:border-gradient-to-br from-cyan-400 via-violet-500 to-pink-500 shadow-[0_0_20px_2px_rgba(0,255,255,0.3)] hover:shadow-[0_0_35px_6px_rgba(255,255,255,0.3)] backdrop-blur-md transition-all duration-500"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="p-6 h-[170px] w-full rounded-xl border border-cyan-400 bg-glass glow-box"
             >
               <FaUniversity className="text-3xl mx-auto mb-3 text-cyan-300" />
               <h3 className="text-xl font-semibold">Current CGPA</h3>
@@ -70,9 +70,11 @@ const AboutSection = () => {
 
             {/* Projects */}
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.4 }}
-              className="p-6 rounded-xl border-2 bg-black/30 border-violet-400 hover:border-gradient-to-br from-pink-400 via-violet-500 to-blue-400 shadow-[0_0_20px_2px_rgba(216,191,216,0.3)] hover:shadow-[0_0_35px_6px_rgba(255,255,255,0.3)] backdrop-blur-md transition-all duration-500"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="p-6 h-[170px] w-full rounded-xl border border-violet-400 bg-glass glow-box"
             >
               <FaProjectDiagram className="text-3xl mx-auto mb-3 text-violet-300" />
               <h3 className="text-xl font-semibold">Projects Done</h3>
@@ -81,9 +83,11 @@ const AboutSection = () => {
 
             {/* Internships */}
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.4 }}
-              className="p-6 rounded-xl border-2 bg-black/30 border-pink-400 hover:border-gradient-to-br from-pink-300 via-red-400 to-yellow-300 shadow-[0_0_20px_2px_rgba(255,182,193,0.3)] hover:shadow-[0_0_35px_6px_rgba(255,255,255,0.3)] backdrop-blur-md transition-all duration-500"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="p-6 h-[170px] w-full rounded-xl border border-pink-400 bg-glass glow-box"
             >
               <FaBriefcase className="text-3xl mx-auto mb-3 text-pink-300" />
               <h3 className="text-xl font-semibold">Internships</h3>

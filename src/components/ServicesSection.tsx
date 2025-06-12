@@ -68,9 +68,10 @@ const ServicesSection = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="rounded-xl p-6 bg-transparent backdrop-blur-md transition-all duration-300 
-                       hover:scale-105 hover:border hover:border-cyan-400 
-                       hover:shadow-[0_0_20px_rgba(34,211,238,0.6)] group relative"
+            className="rounded-xl p-6 bg-transparent backdrop-blur-md 
+                       border border-cyan-400 
+                       shadow-[0_0_25px_rgba(34,211,238,0.5)] 
+                       transition-all duration-300 hover:scale-105"
           >
             <div className="relative z-10">
               <div className="text-5xl mb-4">{svc.icon}</div>

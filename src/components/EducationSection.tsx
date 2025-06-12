@@ -67,7 +67,7 @@ const EducationSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="relative z-10 flex flex-col items-center w-[350px] min-w-[350px]"
+             className="relative z-10 flex flex-col items-center w-[370px] min-w-[370px]"
             >
               {/* Icon */}
               <div className="z-10 w-12 h-12 flex items-center justify-center bg-black border-4 border-white/20 rounded-full shadow-lg mb-6">
@@ -75,7 +75,7 @@ const EducationSection = () => {
               </div>
 
               {/* Card */}
-              <div className="glass-panel w-full min-h-[240px] bg-white/10 hover:bg-white/15 transition duration-300 border-4 border-transparent hover:border-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 shadow-[0_0_25px_4px_rgba(0,191,255,0.7)] rounded-xl p-6 backdrop-blur-md group-hover:scale-[1.02] transform transition-transform glow-border-hover">
+                <div className="glass-panel w-full min-h-[260px] bg-white/10 hover:bg-white/15 transition duration-300 border-4 border-transparent hover:border-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 shadow-[0_0_25px_4px_rgba(0,191,255,0.7)] rounded-xl p-6 backdrop-blur-md group-hover:scale-[1.02] transform transition-transform glow-border-hover">
                 <h3 className="text-2xl font-bold text-white mb-2">{edu.title}</h3>
                 <p className="text-md text-gray-200 mb-1">{edu.details}</p>
                 <p className="text-sm text-gray-400 mb-2">{edu.extra}</p>

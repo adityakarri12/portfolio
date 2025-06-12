@@ -56,15 +56,10 @@ const EducationSection = () => {
         </motion.div>
 
         {/* Horizontal Timeline */}
-        <div className="relative flex flex-col md:flex-row items-start justify-center gap-10 md:gap-8 max-w-6xl mx-auto overflow-x-auto">
-          {/* Horizontal line */}
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: "100%" }}
-            transition={{ duration: 1, ease: 'easeInOut' }}
-            viewport={{ once: true }}
-            className="absolute top-10 left-0 right-0 h-1 bg-gradient-to-r from-neon-cyan via-purple-500 to-electric-blue rounded-full md:top-1/2 md:translate-y-[-50%] z-0"
-          />
+        <div className="relative flex flex-col md:flex-row items-start justify-center gap-10 md:gap-8 max-w-6xl mx-auto overflow-x-auto pt-10">
+
+          {/* Timeline Line (Behind icons only) */}
+          <div className="absolute left-0 right-0 top-[52px] md:top-[60px] h-1 bg-gradient-to-r from-neon-cyan via-purple-500 to-electric-blue z-0" />
 
           {educationData.map((edu, index) => (
             <motion.div
@@ -73,19 +68,19 @@ const EducationSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="relative z-10 min-w-[280px] max-w-xs"
+              className="relative z-10 flex flex-col items-center w-[300px] min-w-[300px]"
             >
-              {/* Dot and Icon */}
-              <div className="flex items-center justify-center w-10 h-10 mx-auto bg-black border-4 border-white/20 rounded-full shadow-lg mb-4">
+              {/* Icon on timeline */}
+              <div className="z-10 w-12 h-12 flex items-center justify-center bg-black border-4 border-white/20 rounded-full shadow-lg mb-6">
                 {edu.icon}
               </div>
 
-              {/* Card */}
-              <div className="glass-panel bg-white/10 hover:bg-white/15 transition duration-300 border-4 border-transparent hover:border-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 shadow-[0_0_25px_4px_rgba(0,191,255,0.7)] rounded-xl p-6 backdrop-blur-md group-hover:scale-[1.02] transform transition-transform glow-border-hover">
+              {/* Equal-sized Card */}
+              <div className="glass-panel w-full h-[260px] bg-white/10 hover:bg-white/15 transition duration-300 border-4 border-transparent hover:border-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 shadow-[0_0_25px_4px_rgba(0,191,255,0.7)] rounded-xl p-6 backdrop-blur-md group-hover:scale-[1.02] transform transition-transform glow-border-hover">
                 <h3 className="text-2xl font-bold text-white mb-2">{edu.title}</h3>
                 <p className="text-md text-gray-200 mb-1">{edu.details}</p>
                 <p className="text-sm text-gray-400 mb-2">{edu.extra}</p>
-                <div className="flex justify-between text-sm text-gray-500">
+                <div className="flex justify-between text-sm text-gray-500 mt-auto">
                   <span>{edu.duration}</span>
                   <span>{edu.location}</span>
                 </div>

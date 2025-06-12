@@ -2,8 +2,9 @@ import Scene3D from '@/components/Scene3D';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
-import EducationSection from '@/components/EducationSection'; // ✅ new import
+import EducationSection from '@/components/EducationSection';
 import SkillsSection from '@/components/SkillsSection';
+import ServicesSection from '@/components/ServicesSection'; // ✅ NEW IMPORT
 import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 import { motion } from 'framer-motion';
@@ -23,13 +24,17 @@ const Index = () => {
           <AboutSection />
         </section>
 
-        {/* ✅ Education Section */}
         <section id="education">
           <EducationSection />
         </section>
 
         <section id="skills">
           <SkillsSection />
+        </section>
+
+        {/* ✅ SERVICES SECTION */}
+        <section id="services">
+          <ServicesSection />
         </section>
 
         <section id="projects">

@@ -39,7 +39,6 @@ const ServicesSection = () => {
 
   return (
     <section id="services" className="relative py-20 px-6 bg-transparent text-white">
-      {/* Title and Description */}
       <div className="relative z-10 container mx-auto text-center mb-16">
         <motion.h2
           className="text-4xl font-bold gradient-text mb-3"
@@ -59,31 +58,47 @@ const ServicesSection = () => {
         </motion.p>
       </div>
 
-      {/* Cards */}
       <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {services.map((svc) => {
           const isFlipped = flipped === svc.title;
           return (
             <motion.div
               key={svc.title}
-              className="relative perspective group"
-              whileHover={() => setFlipped(svc.title)}
-              onHoverEnd={() => setFlipped(null)}
+              className="relative group w-full h-80 cursor-pointer"
+              onMouseEnter={() => setFlipped(svc.title)}
+              onMouseLeave={() => setFlipped(null)}
+              style={{ perspective: '1000px' }} // 👈 perspective on the container
             >
-              <div className={`relative preserve-3d w-full h-80 duration-500 ${isFlipped ? 'rotate-y-180' : ''}`}>
+              <div
+                className={`relative w-full h-full transition-transform duration-700 transform-style preserve-3d ${
+                  isFlipped ? 'rotate-y-180' : ''
+                }`}
+                style={{ transformStyle: 'preserve-3d' }} // 👈 3D transform
+              >
                 {/* Front Side */}
-                <div className="absolute backface-hidden w-full h-full p-6 rounded-xl border border-white/20 bg-white/5 backdrop-blur-md shadow-lg flex flex-col justify-center items-center">
+                <div
+                  className="absolute w-full h-full p-6 rounded-xl border border-white/20 bg-white/5 backdrop-blur-md shadow-lg flex flex-col justify-center items-center"
+                  style={{ backfaceVisibility: 'hidden' }}
+                >
                   <div className="mb-4 text-5xl">{svc.icon}</div>
                   <h3 className="text-xl font-semibold mb-2">{svc.title}</h3>
-                  <p className="text-gray-300 text-sm mb-4">{svc.details.split('.')[0]}.</p>
+                  <p className="text-gray-300 text-sm mb-4">
+                    {svc.details.split('.')[0]}.
+                  </p>
                 </div>
 
                 {/* Back Side */}
-                <div className="absolute backface-hidden rotate-y-180 w-full h-full p-6 rounded-xl border border-white/20 bg-white/5 backdrop-blur-md shadow-lg flex flex-col justify-center items-center">
+                <div
+                  className="absolute w-full h-full p-6 rounded-xl border border-white/20 bg-white/5 backdrop-blur-md shadow-lg flex flex-col justify-center items-center transform rotate-y-180"
+                  style={{ backfaceVisibility: 'hidden' }}
+                >
                   <h3 className="text-xl font-semibold mb-2">Tech Stack</h3>
                   <div className="flex flex-wrap gap-2 justify-center">
                     {svc.tech.map((t) => (
-                      <span key={t} className="px-3 py-1 bg-cyan-600/20 text-cyan-300 border border-cyan-400 rounded-full text-sm">
+                      <span
+                        key={t}
+                        className="px-3 py-1 bg-cyan-600/20 text-cyan-300 border border-cyan-400 rounded-full text-sm"
+                      >
                         {t}
                       </span>
                     ))}

@@ -67,7 +67,7 @@ const EducationSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="relative z-10 flex flex-col items-center w-[360px] min-w-[360px]"
+              className="relative z-10 flex flex-col items-center w-[340px] min-w-[340px]"
             >
               {/* Icon */}
               <div className="z-10 w-12 h-12 flex items-center justify-center bg-black border-4 border-white/20 rounded-full shadow-lg mb-6">

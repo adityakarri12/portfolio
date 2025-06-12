@@ -60,9 +60,11 @@ const ProjectsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.04 }}
-              className="group p-6 rounded-xl border-4 border-transparent bg-white/5 backdrop-blur-md transition-all duration-500 hover:shadow-[0_0_30px_6px_rgba(0,255,255,0.3)] hover:border-gradient-to-r from-cyan-400 via-purple-500 to-blue-400"
+              whileHover={{ scale: 1.05 }}
+              className="group p-6 rounded-2xl bg-white/5 backdrop-blur-lg transition-all duration-500 border-4 border-transparent hover:shadow-[0_0_30px_6px_rgba(0,255,255,0.3)] hover:border-transparent hover:bg-white/10 relative"
             >
+              <div className="absolute inset-0 rounded-2xl border-4 border-transparent group-hover:border-gradient-to-r group-hover:from-cyan-400 group-hover:via-purple-500 group-hover:to-blue-400 transition-all duration-500 pointer-events-none" />
+
               {/* Project Image */}
               <div className="aspect-video rounded-lg mb-4 overflow-hidden shadow-md border border-cyan-500">
                 <img
@@ -113,14 +115,17 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        {/* 💬 Message Box at Bottom */}
+        {/* 💬 Message Box */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          className="mt-20 max-w-3xl mx-auto text-center p-6 border-4 border-transparent bg-white/5 backdrop-blur-md rounded-xl hover:shadow-[0_0_30px_6px_rgba(0,255,255,0.3)] hover:border-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 transition-all duration-500"
+          whileHover={{ scale: 1.05 }}
+          className="group mt-20 max-w-3xl mx-auto text-center p-6 bg-white/5 backdrop-blur-lg rounded-2xl border-4 border-transparent hover:shadow-[0_0_30px_6px_rgba(0,255,255,0.3)] hover:border-transparent hover:bg-white/10 transition-all duration-500 relative"
         >
+          <div className="absolute inset-0 rounded-2xl border-4 border-transparent group-hover:border-gradient-to-r group-hover:from-cyan-400 group-hover:via-purple-500 group-hover:to-blue-400 transition-all duration-500 pointer-events-none" />
+
           <h4 className="text-2xl font-semibold text-white mb-2">💡 Have a Project Idea?</h4>
           <p className="text-gray-300 text-md mb-4">
             I'm always open to collaborations! If you have a cool idea or want to build something together, feel free to message me.

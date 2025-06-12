@@ -32,7 +32,7 @@ const ProjectsSection = () => {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-      className="relative py-20 px-6 bg-transparent text-white backdrop-blur-sm"
+      className="relative py-20 px-6 bg-transparent text-white"
     >
       <div className="container mx-auto">
         {/* Section Header */}
@@ -61,10 +61,14 @@ const ProjectsSection = () => {
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.03 }}
-              className="group relative p-[2px] rounded-xl bg-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 transition-all duration-500"
+              className="group p-1 rounded-xl bg-transparent relative overflow-hidden"
             >
-              <div className="rounded-xl bg-white/5 backdrop-blur-lg p-6">
-                {/* Image */}
+              {/* Glow border animation */}
+              <div className="absolute inset-0 rounded-xl z-0 transition-opacity duration-500 opacity-0 group-hover:opacity-100 animate-glow-border"></div>
+
+              {/* Card Content */}
+              <div className="relative z-10 bg-white/5 backdrop-blur-md p-6 rounded-xl">
+                {/* Project Image */}
                 <div className="aspect-video rounded-lg mb-4 overflow-hidden shadow-md border border-cyan-500">
                   <img
                     src={project.src}
@@ -90,23 +94,25 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* Links */}
-                <div className="flex space-x-4 mt-4">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-cyan-300 hover:text-cyan-100 transition-colors"
-                  >
-                    <FaLink /> Live Demo
-                  </a>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-violet-300 hover:text-violet-100 transition-colors"
-                  >
-                    <FaGithub /> GitHub
-                  </a>
+                <div className="flex flex-wrap items-center justify-between gap-4 mt-4">
+                  <div className="flex space-x-4">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-cyan-300 hover:text-cyan-100 transition-colors"
+                    >
+                      <FaLink /> Live Demo
+                    </a>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-violet-300 hover:text-violet-100 transition-colors"
+                    >
+                      <FaGithub /> GitHub
+                    </a>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -119,10 +125,10 @@ const ProjectsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          whileHover={{ scale: 1.03 }}
-          className="group relative mt-20 max-w-3xl mx-auto p-[2px] rounded-xl bg-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 transition-all duration-500"
+          className="group mt-20 max-w-3xl mx-auto text-center p-1 bg-transparent rounded-xl relative overflow-hidden"
         >
-          <div className="relative z-10 p-6 text-center rounded-xl bg-white/5 backdrop-blur-lg">
+          <div className="absolute inset-0 rounded-xl z-0 transition-opacity duration-500 opacity-0 group-hover:opacity-100 animate-glow-border"></div>
+          <div className="relative z-10 p-6 bg-white/5 backdrop-blur-md rounded-xl">
             <h4 className="text-2xl font-semibold text-white mb-2">💡 Have a Project Idea?</h4>
             <p className="text-gray-300 text-md mb-4">
               I'm always open to collaborations! If you have a cool idea or want to build something together, feel free to message me.

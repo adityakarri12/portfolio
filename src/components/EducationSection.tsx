@@ -75,7 +75,7 @@ const EducationSection = () => {
               </div>
 
               {/* Card */}
-                <div className="glass-panel w-full min-h-[240px] bg-white/10 hover:bg-white/15 transition duration-300 border-4 border-transparent hover:border-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 shadow-[0_0_25px_4px_rgba(0,191,255,0.7)] rounded-xl p-6 backdrop-blur-md group-hover:scale-[1.02] transform transition-transform glow-border-hover">
+                <div className="glass-panel w-full min-h-[220px] bg-white/10 hover:bg-white/15 transition duration-300 border-4 border-transparent hover:border-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 shadow-[0_0_25px_4px_rgba(0,191,255,0.7)] rounded-xl p-6 backdrop-blur-md group-hover:scale-[1.02] transform transition-transform glow-border-hover">
                 <h3 className="text-2xl font-bold text-white mb-2">{edu.title}</h3>
                 <p className="text-md text-gray-200 mb-1">{edu.details}</p>
                 <p className="text-sm text-gray-400 mb-2">{edu.extra}</p>

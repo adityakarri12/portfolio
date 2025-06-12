@@ -60,55 +60,55 @@ const ProjectsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
-              className="group p-6 rounded-2xl bg-white/5 backdrop-blur-lg transition-all duration-500 border-4 border-transparent hover:shadow-[0_0_30px_6px_rgba(0,255,255,0.3)] hover:border-transparent hover:bg-white/10 relative"
+              whileHover={{ scale: 1.04 }}
+              className="group bg-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 p-[2px] rounded-2xl transition-all duration-500"
             >
-              <div className="absolute inset-0 rounded-2xl border-4 border-transparent group-hover:border-gradient-to-r group-hover:from-cyan-400 group-hover:via-purple-500 group-hover:to-blue-400 transition-all duration-500 pointer-events-none" />
+              <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 h-full group-hover:shadow-[0_0_30px_6px_rgba(0,255,255,0.3)] transition-all duration-500">
+                {/* Project Image */}
+                <div className="aspect-video rounded-lg mb-4 overflow-hidden shadow-md border border-cyan-500">
+                  <img
+                    src={project.src}
+                    alt={project.alt}
+                    className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
 
-              {/* Project Image */}
-              <div className="aspect-video rounded-lg mb-4 overflow-hidden shadow-md border border-cyan-500">
-                <img
-                  src={project.src}
-                  alt={project.alt}
-                  className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
-                />
-              </div>
+                {/* Text Content */}
+                <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
+                <p className="text-gray-300 mb-4">{project.description}</p>
 
-              {/* Text Content */}
-              <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
-              <p className="text-gray-300 mb-4">{project.description}</p>
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tech.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="px-3 py-1 bg-cyan-600/20 text-cyan-300 border border-cyan-400 rounded-full text-sm hover:bg-cyan-400/30 transition-colors duration-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
 
-              {/* Tech Stack */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech, techIndex) => (
-                  <span
-                    key={techIndex}
-                    className="px-3 py-1 bg-cyan-600/20 text-cyan-300 border border-cyan-400 rounded-full text-sm hover:bg-cyan-400/30 transition-colors duration-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {/* Links */}
-              <div className="flex flex-wrap items-center justify-between gap-4 mt-4">
-                <div className="flex space-x-4">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-cyan-300 hover:text-cyan-100 transition-colors"
-                  >
-                    <FaLink /> Live Demo
-                  </a>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-violet-300 hover:text-violet-100 transition-colors"
-                  >
-                    <FaGithub /> GitHub
-                  </a>
+                {/* Links */}
+                <div className="flex flex-wrap items-center justify-between gap-4 mt-4">
+                  <div className="flex space-x-4">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-cyan-300 hover:text-cyan-100 transition-colors"
+                    >
+                      <FaLink /> Live Demo
+                    </a>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-violet-300 hover:text-violet-100 transition-colors"
+                    >
+                      <FaGithub /> GitHub
+                    </a>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -121,21 +121,21 @@ const ProjectsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          whileHover={{ scale: 1.05 }}
-          className="group mt-20 max-w-3xl mx-auto text-center p-6 bg-white/5 backdrop-blur-lg rounded-2xl border-4 border-transparent hover:shadow-[0_0_30px_6px_rgba(0,255,255,0.3)] hover:border-transparent hover:bg-white/10 transition-all duration-500 relative"
+          whileHover={{ scale: 1.04 }}
+          className="group bg-gradient-to-r from-cyan-400 via-purple-500 to-blue-400 p-[2px] mt-20 max-w-3xl mx-auto rounded-2xl transition-all duration-500"
         >
-          <div className="absolute inset-0 rounded-2xl border-4 border-transparent group-hover:border-gradient-to-r group-hover:from-cyan-400 group-hover:via-purple-500 group-hover:to-blue-400 transition-all duration-500 pointer-events-none" />
-
-          <h4 className="text-2xl font-semibold text-white mb-2">💡 Have a Project Idea?</h4>
-          <p className="text-gray-300 text-md mb-4">
-            I'm always open to collaborations! If you have a cool idea or want to build something together, feel free to message me.
-          </p>
-          <a
-            href="#contact"
-            className="inline-block px-5 py-2 bg-cyan-500/20 text-cyan-300 border border-cyan-400 rounded-full hover:bg-cyan-600/30 hover:text-white transition-all duration-300"
-          >
-            💬 Message Me
-          </a>
+          <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 text-center transition-all duration-500">
+            <h4 className="text-2xl font-semibold text-white mb-2">💡 Have a Project Idea?</h4>
+            <p className="text-gray-300 text-md mb-4">
+              I'm always open to collaborations! If you have a cool idea or want to build something together, feel free to message me.
+            </p>
+            <a
+              href="#contact"
+              className="inline-block px-5 py-2 bg-cyan-500/20 text-cyan-300 border border-cyan-400 rounded-full hover:bg-cyan-600/30 hover:text-white transition-all duration-300"
+            >
+              💬 Message Me
+            </a>
+          </div>
         </motion.div>
       </div>
     </motion.section>

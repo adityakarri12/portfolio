@@ -10,6 +10,7 @@ const Navigation = () => {
     { id: 'about', label: 'About' },
     { id: 'education', label: 'Education' },
     { id: 'skills', label: 'Skills' },
+    { id: 'services', label: 'Services' }, // ✅ Added Services here
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },
   ];
@@ -73,7 +74,7 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile menu button - optional: can be extended for a full mobile menu */}
+          {/* Mobile menu button (optional) */}
           <div className="md:hidden">
             <motion.button
               whileTap={{ scale: 0.95 }}

@@ -5,37 +5,37 @@ const services = [
     title: "AI & ML Solutions",
     icon: "🤖",
     tech: ["Python", "TensorFlow", "Scikit-learn"],
-    details: "Built 5+ intelligent systems using supervised, unsupervised and NLP techniques.",
+    details: "I can develop intelligent models for classification, prediction, and automation using AI/ML.",
   },
   {
     title: "Data Science & Visualization",
     icon: "📊",
     tech: ["Pandas", "NumPy", "PowerBI", "Matplotlib"],
-    details: "Cleaned and visualized datasets to uncover insights and patterns.",
+    details: "I can analyze datasets and build interactive dashboards to unlock data-driven decisions.",
   },
   {
     title: "Generative AI Projects",
     icon: "🧠",
     tech: ["OpenAI", "LangChain", "HuggingFace"],
-    details: "Created GPT-based chatbots, content generation tools, and AI prompts.",
+    details: "I can build chatbots, content generators, and prompt-based AI tools with GenAI models.",
   },
   {
     title: "Database Design & Optimization",
     icon: "🗄️",
     tech: ["MySQL", "MongoDB", "PostgreSQL"],
-    details: "Designed scalable databases and optimized queries for performance.",
+    details: "I can design robust databases and optimize queries for speed and scalability.",
   },
   {
     title: "DevOps & CI/CD",
     icon: "⚙️",
     tech: ["Docker", "GitHub Actions", "Kubernetes"],
-    details: "Automated deployments and managed scalable infrastructure.",
+    details: "I can automate deployments and manage infrastructure with efficient CI/CD pipelines.",
   },
   {
     title: "Web App Development",
     icon: "🌐",
-    tech: ["React", "Node.js", "Express", "Tailwind CSS"],
-    details: "Built modern web apps with responsive UI and real-time capabilities.",
+    tech: ["React", "Node.js", "Tailwind CSS", "Express"],
+    details: "I can build modern, responsive, and scalable full-stack web applications.",
   },
 ];
 
@@ -68,11 +68,10 @@ const ServicesSection = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="rounded-xl p-6 bg-gradient-to-br from-cyan-500/10 to-purple-600/10 border-2 border-transparent
-                       bg-clip-padding backdrop-blur-md shadow-xl 
-                       hover:shadow-cyan-400/40 hover:scale-105 transition-all duration-300 group relative"
+            className="rounded-xl p-6 bg-transparent hover:border hover:border-cyan-400
+                       backdrop-blur-md hover:shadow-lg hover:shadow-cyan-400/30 
+                       hover:scale-105 transition-all duration-300 group relative"
           >
-            <div className="absolute -inset-[2px] rounded-xl bg-gradient-to-r from-cyan-400 via-pink-500 to-purple-500 blur-sm opacity-30 group-hover:opacity-60 transition duration-300 z-0" />
             <div className="relative z-10">
               <div className="text-5xl mb-4">{svc.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{svc.title}</h3>

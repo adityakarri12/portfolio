@@ -6,23 +6,23 @@ const ProjectsSection = () => {
   const projects = [
     {
       title: "Movie Recommendation System",
-      description:
-        "Designed and launched a scalable movie recommendation system leveraging advanced filtering algorithms.",
+      description: "Designed and launched a scalable movie recommendation system leveraging advanced filtering algorithms.",
       tech: ["Python", "Pandas", "Tkinter", "Machine Learning"],
       src: "https://via.placeholder.com/600x300?text=Movie+App+Preview",
       alt: "Movie Recommendation System demo",
       link: "https://movie-recommendation-2-a56i.onrender.com/",
-      github: "https://github.com/adityakarri12/movie-recommendation"
+      github: "https://github.com/adityakarri12/movie-recommendation",
+      video: "https://www.youtube.com/embed/YOUR_MOVIE_VIDEO_ID" // 🔁 Replace with actual video URL
     },
     {
       title: "Disease Prediction and Medication System",
-      description:
-        "Engineered an AI-powered disease detection platform providing personalized medication insights.",
+      description: "Engineered an AI-powered disease detection platform providing personalized medication insights.",
       tech: ["Python", "RandomForest", "Tkinter", "Machine Learning"],
       src: "https://via.placeholder.com/600x300?text=Disease+App+Preview",
       alt: "Disease Prediction and Medication System demo",
       link: "https://disease-prdeiction-and-drug.onrender.com/",
-      github: "https://github.com/adityakarri12/Disease-Prdeiction-and-Drug-recommendations-System"
+      github: "https://github.com/adityakarri12/Disease-Prdeiction-and-Drug-recommendations-System",
+      video: "https://www.youtube.com/embed/YOUR_DISEASE_VIDEO_ID" // 🔁 Replace with actual video URL
     }
   ];
 
@@ -65,7 +65,6 @@ const ProjectsSection = () => {
               whileHover={{ scale: 1.04 }}
               className="group p-6 rounded-xl bg-white/5 backdrop-blur-md transition-all duration-500 border-2 border-transparent hover:border-[3px] hover:border-cyan-400 shadow-md hover:shadow-[0_0_30px_rgba(0,255,255,0.4)]"
             >
-              {/* Project Image */}
               <div
                 className="aspect-video rounded-lg mb-4 overflow-hidden border border-cyan-500 hover:brightness-110 transition duration-300 cursor-pointer"
                 onClick={() => setSelectedProject(project)}
@@ -77,11 +76,9 @@ const ProjectsSection = () => {
                 />
               </div>
 
-              {/* Text */}
               <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
               <p className="text-gray-300 mb-4">{project.description}</p>
 
-              {/* Tech Stack */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tech.map((tech, techIndex) => (
                   <span
@@ -93,7 +90,6 @@ const ProjectsSection = () => {
                 ))}
               </div>
 
-              {/* Links */}
               <div className="flex justify-between">
                 <a
                   href={project.link}
@@ -116,7 +112,7 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        {/* Message Box */}
+        {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -177,7 +173,7 @@ const ProjectsSection = () => {
                   </span>
                 ))}
               </div>
-              <div className="flex justify-between text-sm">
+              <div className="flex justify-between text-sm mb-6">
                 <a
                   href={selectedProject.link}
                   target="_blank"
@@ -193,6 +189,23 @@ const ProjectsSection = () => {
                   <FaGithub /> GitHub
                 </a>
               </div>
+
+              {/* 🎥 Demo Video */}
+              {selectedProject.video && (
+                <div className="mt-6">
+                  <h3 className="text-xl font-semibold mb-2">🎥 Demo Video</h3>
+                  <div className="aspect-video w-full rounded-lg overflow-hidden border border-cyan-400">
+                    <iframe
+                      src={selectedProject.video}
+                      title="Demo Video"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    ></iframe>
+                  </div>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}

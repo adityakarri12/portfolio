@@ -19,7 +19,6 @@ export default {
     },
     extend: {
       colors: {
-        // System color variables
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -63,8 +62,6 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))'
         },
-
-        // Custom portfolio palette
         'space-dark': '#121630',
         'space-900': '#0a0a23',
         'neon-cyan': '#00D9FF',
@@ -117,6 +114,11 @@ export default {
         'slide-in-left': {
           '0%': { opacity: '0', transform: 'translateX(-50px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' }
+        },
+        'wiggle': {
+          '0%': { transform: 'translateY(-2px)' },
+          '50%': { transform: 'translateY(2px)' },
+          '100%': { transform: 'translateY(-2px)' }
         }
       },
       animation: {
@@ -128,7 +130,8 @@ export default {
         'gradient-x': 'gradient-x 8s ease infinite',
         'scroll-reveal': 'scroll-reveal 0.8s ease-out forwards',
         'pulse-icon': 'pulse-icon 1.5s ease-in-out infinite',
-        'slide-in-left': 'slide-in-left 0.7s ease-out forwards'
+        'slide-in-left': 'slide-in-left 0.7s ease-out forwards',
+        'wiggle': 'wiggle 0.6s ease-in-out'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

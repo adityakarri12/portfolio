@@ -16,9 +16,7 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const navBarRef = useRef<HTMLDivElement>(null);
-  const [carLeft, setCarLeft] = useState(0);
 
-  // Handle scroll to apply background
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -27,7 +25,6 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Set active section
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -53,19 +50,6 @@ const Navigation = () => {
     };
   }, []);
 
-  // Position the car based on the active button
-  useEffect(() => {
-    const activeBtn = buttonRefs.current[activeSection];
-    const navBar = navBarRef.current;
-
-    if (activeBtn && navBar) {
-      const navRect = navBar.getBoundingClientRect();
-      const btnRect = activeBtn.getBoundingClientRect();
-      const offsetLeft = btnRect.left - navRect.left + btnRect.width / 2 - 12;
-      setCarLeft(offsetLeft);
-    }
-  }, [activeSection]);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -82,8 +66,7 @@ const Navigation = () => {
         isScrolled ? 'glass-panel m-4 rounded-full' : 'bg-transparent'
       }`}
     >
-      <div ref={navBarRef} className="relative container mx-auto px-6 pt-4 pb-10">
-        {/* Navigation Bar */}
+      <div ref={navBarRef} className="relative container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -139,20 +122,6 @@ const Navigation = () => {
               </svg>
             </motion.button>
           </div>
-        </div>
-
-        {/* Road line */}
-        <div className="absolute bottom-2 left-0 right-0 h-1 bg-gray-700 mx-6 rounded-full">
-          {/* Car Emoji */}
-          <motion.div
-            initial={{ left: 0 }}
-            animate={{ left: carLeft }}
-            transition={{ type: 'spring', stiffness: 150, damping: 20 }}
-            className="absolute -top-4 text-2xl"
-            style={{ position: 'absolute' }}
-          >
-            🚗
-          </motion.div>
         </div>
       </div>
     </motion.nav>

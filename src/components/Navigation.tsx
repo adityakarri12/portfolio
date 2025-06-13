@@ -15,35 +15,41 @@ const Navigation = () => {
     { id: 'contact', label: 'Contact' },
   ];
 
+  // Detect scroll to change navbar background
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    // Intersection Observer setup
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const sectionId = entry.target.id;
-            setActiveSection(sectionId);
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
+  // Scroll spy logic using IntersectionObserver
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5, // Trigger when 50% of the section is visible
+    };
 
-    // Observe each section
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, options);
+
     navItems.forEach((item) => {
-      const el = document.getElementById(item.id);
-      if (el) observer.observe(el);
+      const section = document.getElementById(item.id);
+      if (section) observer.observe(section);
     });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      observer.disconnect();
+      navItems.forEach((item) => {
+        const section = document.getElementById(item.id);
+        if (section) observer.unobserve(section);
+      });
     };
   }, []);
 
@@ -51,8 +57,7 @@ const Navigation = () => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      // Optional: Uncomment to force highlight instantly on click
-      // setActiveSection(sectionId);
+      setActiveSection(sectionId); // optional, IntersectionObserver will also set
     }
   };
 
@@ -66,7 +71,6 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo / Name */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="text-xl font-bold gradient-text"
@@ -74,7 +78,6 @@ const Navigation = () => {
             Karri Aditya Lakshmi Narayan
           </motion.div>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (
               <motion.button
@@ -100,13 +103,18 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button (Optional) */}
+          {/* Optional mobile menu button */}
           <div className="md:hidden">
             <motion.button
               whileTap={{ scale: 0.95 }}
               className="text-white focus:outline-none"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

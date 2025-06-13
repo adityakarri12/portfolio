@@ -1,48 +1,43 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
+const navItems = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'education', label: 'Education' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'services', label: 'Services' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'contact', label: 'Contact' },
+];
+
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
-  const [carPosition, setCarPosition] = useState(0);
-  const navRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
+  const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
+  const navBarRef = useRef<HTMLDivElement>(null);
+  const [carLeft, setCarLeft] = useState(0);
 
-  const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'education', label: 'Education' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'services', label: 'Services' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' },
-  ];
-
+  // Scroll detection for background style
   useEffect(() => {
-    const activeBtn = navRefs.current[activeSection];
-    if (activeBtn) {
-      const rect = activeBtn.getBoundingClientRect();
-      const containerRect = activeBtn.parentElement?.getBoundingClientRect();
-      if (containerRect) {
-        const newPosition = rect.left - containerRect.left + rect.width / 2 - 10;
-        setCarPosition(newPosition);
-      }
-    }
-  }, [activeSection]);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Scroll spy to track visible section
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
         });
       },
-      { root: null, rootMargin: '0px', threshold: 0.5 }
+      { threshold: 0.5 }
     );
 
     navItems.forEach((item) => {
@@ -57,6 +52,19 @@ const Navigation = () => {
       });
     };
   }, []);
+
+  // Update car position
+  useEffect(() => {
+    const activeBtn = buttonRefs.current[activeSection];
+    const navBar = navBarRef.current;
+
+    if (activeBtn && navBar) {
+      const navRect = navBar.getBoundingClientRect();
+      const btnRect = activeBtn.getBoundingClientRect();
+      const offsetLeft = btnRect.left - navRect.left + btnRect.width / 2 - 12; // center of button - half car
+      setCarLeft(offsetLeft);
+    }
+  }, [activeSection]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -74,8 +82,19 @@ const Navigation = () => {
         isScrolled ? 'glass-panel m-4 rounded-full' : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between relative">
+      <div ref={navBarRef} className="container mx-auto px-6 py-4 relative">
+        {/* 🚗 Car Emoji */}
+        <motion.div
+          initial={{ left: 0 }}
+          animate={{ left: carLeft }}
+          transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+          className="absolute -top-4 text-2xl"
+          style={{ position: 'absolute' }}
+        >
+          🚗
+        </motion.div>
+
+        <div className="flex items-center justify-between">
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="text-xl font-bold gradient-text"
@@ -83,50 +102,32 @@ const Navigation = () => {
             Karri Aditya Lakshmi Narayan
           </motion.div>
 
-          {/* Navigation Items + Car + Road */}
-          <div className="hidden md:flex flex-col space-y-1 relative w-full justify-center">
-            <div className="flex space-x-8 justify-center relative">
-              {navItems.map((item) => (
-                <motion.button
-                  key={item.id}
-                  ref={(el) => (navRefs.current[item.id] = el)}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`relative px-4 py-2 transition-colors duration-300 ${
-                    activeSection === item.id
-                      ? 'text-neon-cyan glow-text'
-                      : 'text-gray-300 hover:text-white'
-                  }`}
-                >
-                  {item.label}
-                  {activeSection === item.id && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-neon-cyan"
-                      style={{ borderRadius: '2px' }}
-                    />
-                  )}
-                </motion.button>
-              ))}
-
-              {/* 🚗 Car Animation */}
-              <motion.div
-                className="absolute -bottom-6 text-2xl z-10"
-                animate={{ x: carPosition }}
-                transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+          <div className="hidden md:flex space-x-8">
+            {navItems.map((item) => (
+              <motion.button
+                key={item.id}
+                ref={(el) => (buttonRefs.current[item.id] = el)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => scrollToSection(item.id)}
+                className={`relative px-4 py-2 transition-colors duration-300 ${
+                  activeSection === item.id
+                    ? 'text-neon-cyan glow-text'
+                    : 'text-gray-300 hover:text-white'
+                }`}
               >
-                🚗
-              </motion.div>
-            </div>
-
-            {/* 🛣 Road background under nav */}
-            <div className="relative mt-2 w-full h-[30px] bg-gray-800 rounded-full overflow-hidden">
-              <div className="absolute top-1/2 left-0 w-full h-1 transform -translate-y-1/2 bg-[repeating-linear-gradient(to_right,_white_0,_white_10px,_transparent_10px,_transparent_20px)]" />
-            </div>
+                {item.label}
+                {activeSection === item.id && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-neon-cyan"
+                    style={{ borderRadius: '2px' }}
+                  />
+                )}
+              </motion.button>
+            ))}
           </div>
 
-          {/* Mobile Menu Icon */}
           <div className="md:hidden">
             <motion.button
               whileTap={{ scale: 0.95 }}

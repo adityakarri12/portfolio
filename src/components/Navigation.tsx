@@ -18,7 +18,7 @@ const Navigation = () => {
   const navBarRef = useRef<HTMLDivElement>(null);
   const [carLeft, setCarLeft] = useState(0);
 
-  // Scroll detection for background style
+  // Handle scroll to apply background
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -27,7 +27,7 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Scroll spy to track visible section
+  // Set active section
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -53,7 +53,7 @@ const Navigation = () => {
     };
   }, []);
 
-  // Update car position
+  // Position the car based on the active button
   useEffect(() => {
     const activeBtn = buttonRefs.current[activeSection];
     const navBar = navBarRef.current;
@@ -61,7 +61,7 @@ const Navigation = () => {
     if (activeBtn && navBar) {
       const navRect = navBar.getBoundingClientRect();
       const btnRect = activeBtn.getBoundingClientRect();
-      const offsetLeft = btnRect.left - navRect.left + btnRect.width / 2 - 12; // center of button - half car
+      const offsetLeft = btnRect.left - navRect.left + btnRect.width / 2 - 12;
       setCarLeft(offsetLeft);
     }
   }, [activeSection]);
@@ -82,18 +82,8 @@ const Navigation = () => {
         isScrolled ? 'glass-panel m-4 rounded-full' : 'bg-transparent'
       }`}
     >
-      <div ref={navBarRef} className="container mx-auto px-6 py-4 relative">
-        {/* 🚗 Car Emoji */}
-        <motion.div
-          initial={{ left: 0 }}
-          animate={{ left: carLeft }}
-          transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-          className="absolute -top-4 text-2xl"
-          style={{ position: 'absolute' }}
-        >
-          🚗
-        </motion.div>
-
+      <div ref={navBarRef} className="relative container mx-auto px-6 pt-4 pb-10">
+        {/* Navigation Bar */}
         <div className="flex items-center justify-between">
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -128,6 +118,7 @@ const Navigation = () => {
             ))}
           </div>
 
+          {/* Mobile Menu Icon */}
           <div className="md:hidden">
             <motion.button
               whileTap={{ scale: 0.95 }}
@@ -148,6 +139,20 @@ const Navigation = () => {
               </svg>
             </motion.button>
           </div>
+        </div>
+
+        {/* Road line */}
+        <div className="absolute bottom-2 left-0 right-0 h-1 bg-gray-700 mx-6 rounded-full">
+          {/* Car Emoji */}
+          <motion.div
+            initial={{ left: 0 }}
+            animate={{ left: carLeft }}
+            transition={{ type: 'spring', stiffness: 150, damping: 20 }}
+            className="absolute -top-4 text-2xl"
+            style={{ position: 'absolute' }}
+          >
+            🚗
+          </motion.div>
         </div>
       </div>
     </motion.nav>

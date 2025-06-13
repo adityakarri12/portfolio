@@ -10,7 +10,7 @@ const Navigation = () => {
     { id: 'about', label: 'About' },
     { id: 'education', label: 'Education' },
     { id: 'skills', label: 'Skills' },
-    { id: 'services', label: 'Services' }, // ✅ Added Services here
+    { id: 'services', label: 'Services' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },
   ];
@@ -21,14 +21,38 @@ const Navigation = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Intersection Observer setup
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const sectionId = entry.target.id;
+            setActiveSection(sectionId);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    // Observe each section
+    navItems.forEach((item) => {
+      const el = document.getElementById(item.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(sectionId);
+      // Optional: Uncomment to force highlight instantly on click
+      // setActiveSection(sectionId);
     }
   };
 
@@ -42,6 +66,7 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
+          {/* Logo / Name */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="text-xl font-bold gradient-text"
@@ -49,6 +74,7 @@ const Navigation = () => {
             Karri Aditya Lakshmi Narayan
           </motion.div>
 
+          {/* Desktop Nav */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (
               <motion.button
@@ -74,14 +100,19 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile menu button (optional) */}
+          {/* Mobile Menu Button (Optional) */}
           <div className="md:hidden">
             <motion.button
               whileTap={{ scale: 0.95 }}
               className="text-white focus:outline-none"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             </motion.button>
           </div>

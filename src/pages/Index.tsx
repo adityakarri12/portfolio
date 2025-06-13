@@ -4,7 +4,7 @@ import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import EducationSection from '@/components/EducationSection';
 import SkillsSection from '@/components/SkillsSection';
-import ServicesSection from '@/components/ServicesSection'; // ✅ NEW IMPORT
+import ServicesSection from '@/components/ServicesSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 import { motion } from 'framer-motion';
@@ -16,32 +16,31 @@ const Index = () => {
       <Navigation />
 
       <div className="relative z-10">
-        <section id="home">
+        <section id="home" className="pt-24">
           <HeroSection />
         </section>
 
-        <section id="about">
+        <section id="about" className="pt-24">
           <AboutSection />
         </section>
 
-        <section id="education">
+        <section id="education" className="pt-24">
           <EducationSection />
         </section>
 
-        <section id="skills">
+        <section id="skills" className="pt-24">
           <SkillsSection />
         </section>
 
-        {/* ✅ SERVICES SECTION */}
-        <section id="services">
+        <section id="services" className="pt-24">
           <ServicesSection />
         </section>
 
-        <section id="projects">
+        <section id="projects" className="pt-24">
           <ProjectsSection />
         </section>
 
-        <section id="contact">
+        <section id="contact" className="pt-24">
           <ContactSection />
         </section>
 
@@ -63,6 +62,7 @@ const Index = () => {
         </motion.footer>
       </div>
 
+      {/* Back to top button */}
       <motion.button
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}

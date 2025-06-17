@@ -46,7 +46,7 @@ const AboutSection = () => {
             </p>
 
             <a
-              href="/resume.pdf"
+              href="https://drive.google.com/file/d/1EMXfDg3trRePtALy-yOrqccWwjFKM3-S/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 px-6 py-2 border border-cyan-400 rounded-full text-cyan-400 hover:bg-cyan-400 hover:text-black transition duration-300"
